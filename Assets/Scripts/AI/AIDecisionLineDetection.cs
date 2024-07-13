@@ -11,11 +11,11 @@ public class AIDecisionLineDetection : AIDecision
 
     [SerializeField]
     private LineRenderer _lineRenderer;
-    
+
 
     private void OnValidate()
     {
-        if(_lineRenderer == null)
+        if (_lineRenderer == null)
         {
             _lineRenderer = GetComponent<LineRenderer>();
         }
@@ -28,13 +28,13 @@ public class AIDecisionLineDetection : AIDecision
 
     private bool DetectTarget()
     {
-        Transform target = null;
+        //Transform target = null;
         RaycastHit2D raycast;
 
         //TODO Grab direction character is facing and cast box that way 
-        raycast = Physics2D.BoxCast(transform.position - Vector3.right * RayWidth/ 2f, Vector2.one, 0f, Vector2.right, DetectionDistance, TargetLayer);
+        raycast = Physics2D.BoxCast(transform.position - Vector3.right * RayWidth / 2f, Vector2.one, 0f, Vector2.right, DetectionDistance, TargetLayer);
 
-        DrawDetectionLine();                
+        DrawDetectionLine();
 
         if (raycast)
         {
@@ -58,7 +58,7 @@ public class AIDecisionLineDetection : AIDecision
             _lineRenderer.SetPosition(1, transform.position + Vector3.right * DetectionDistance);
             _lineRenderer.startWidth = RayWidth;
             _lineRenderer.endWidth = RayWidth;
-        }        
+        }
     }
 
     public override void OnEnterState()
@@ -67,7 +67,7 @@ public class AIDecisionLineDetection : AIDecision
         {
             _lineRenderer.enabled = true;
         }
-        
+
     }
 
     public override void OnExitState()

@@ -35,7 +35,7 @@ public class PlayerInputControl : MonoBehaviour
         //playerInputActions.Player.Enable();
 
         //imposterAction = playerInputActions.Player.Imposter;
-      //  turnbackAction = playerInputActions.Player.TurnBack;
+        //  turnbackAction = playerInputActions.Player.TurnBack;
 
         animator = GetComponent<Animator>();
         ogController = animator.runtimeAnimatorController;
@@ -61,8 +61,8 @@ public class PlayerInputControl : MonoBehaviour
 
         if (false)//turnbackAction.triggered)
         {
-            AudioPoolManager.Instance.PlayAudioClip(pewpew);
-            TurnBack();
+            //AudioPoolManager.Instance.PlayAudioClip(pewpew);
+            //TurnBack();
         }
     }
 
@@ -114,8 +114,8 @@ public class PlayerInputControl : MonoBehaviour
 
             if (false)//imposterAction.triggered)
             {
-                AudioPoolManager.Instance.PlayAudioClip(crunch);
-                StartCoroutine(ImposterEnemy(enemyController, behindyouPosition, enemy, enemyAnimator)); //pass the new controller to the coroutine
+                //AudioPoolManager.Instance.PlayAudioClip(crunch);
+                //StartCoroutine(ImposterEnemy(enemyController, behindyouPosition, enemy, enemyAnimator)); //pass the new controller to the coroutine
             }
 
         }
