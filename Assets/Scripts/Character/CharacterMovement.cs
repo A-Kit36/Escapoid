@@ -6,11 +6,17 @@ public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] float speed;
     private Vector2 movementInput;
+    Rigidbody2D rb;
     private Vector3 targetPos; // for tile-based movement
+    public LayerMask solidObjectsLayer; // to check if our target tile has a solid collider, solid objects will be on a Layer called "SolidObjects"
 
     private bool isMovingToTile; // explicitly for the coroutine
     private bool isMoving; // for animator
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -46,7 +52,11 @@ public class CharacterMovement : MonoBehaviour
         targetPos = transform.position;
         targetPos.x += movementInput.x;
         targetPos.y += movementInput.y;
-        StartCoroutine(MoveToPosition(targetPos));
+
+        if (IsWalkable(targetPos))
+        {
+            StartCoroutine(MoveToPosition(targetPos));
+        }
 
     }
 
@@ -56,14 +66,25 @@ public class CharacterMovement : MonoBehaviour
 
         while ((target - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            rb.transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             yield return null;
         }
-        transform.position = target;
+        rb.transform.position = target;
 
         isMovingToTile = false;
     }
 
+    private bool IsWalkable(Vector3 targetPos)
+    {
+        if (Physics2D.OverlapCircle(targetPos, 1f, solidObjectsLayer) != null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
     public float GetPlayerX()
     {
         return movementInput.x;

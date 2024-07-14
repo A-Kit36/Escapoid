@@ -5,6 +5,7 @@ using UnityEngine;
 public class TurnBackAbility : CharAbility
 {
     PlayerAnimator playerAnimator;
+    ImposterAbility imposterAbility;
     private bool isActive = true;
 
     public override bool IsActive
@@ -16,6 +17,7 @@ public class TurnBackAbility : CharAbility
     private void Awake()
     {
         playerAnimator = GetComponent<PlayerAnimator>();
+        imposterAbility = GetComponent<ImposterAbility>();
     }
     public override void Trigger()
     {
@@ -24,5 +26,6 @@ public class TurnBackAbility : CharAbility
             return;
         }
         playerAnimator.ChangeBack();
+        imposterAbility.StopTimer();
     }
 }

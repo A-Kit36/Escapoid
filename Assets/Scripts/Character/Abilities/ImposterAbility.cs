@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,6 +10,10 @@ public class ImposterAbility : CharAbility
     RuntimeAnimatorController storedController;
     PlayerAnimator playerAnimator;
     private bool inTriggerZone = false;
+    [SerializeField] private float imposterTime;
+    private bool timerStopped = false;
+    [SerializeField] private TextMeshProUGUI timerUI; // temporary workaround before we have a UI manager
+    private bool changeActivated;
 
     private bool isActive = true;
 
@@ -22,6 +27,21 @@ public class ImposterAbility : CharAbility
     {
         playerAnimator = GetComponent<PlayerAnimator>();
     }
+
+    private void Update()
+    {
+        if (imposterTime > 0 && !timerStopped)
+        {
+            imposterTime -= Time.deltaTime;
+        }
+        timerUI.text = imposterTime.ToString();
+
+        if (imposterTime <= 0)
+        {
+            playerAnimator.ChangeBack();
+            changeActivated = false;
+        }
+    }
     public override void Trigger()
     {
         if (!isActive)
@@ -29,11 +49,19 @@ public class ImposterAbility : CharAbility
             return;
         }
 
-        if (inTriggerZone)
+        if (inTriggerZone && !changeActivated)
         {
             playerAnimator.ChangeSkin();
             playerAnimator.ChangeController(storedController);
+            imposterTime = 10f;
+            changeActivated = true; // so the first time it HAS to happen while in trigger zone
         }
+        else if (changeActivated && storedController != null)
+        {
+            playerAnimator.ChangeController(storedController);
+            timerStopped = false;
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -55,6 +83,14 @@ public class ImposterAbility : CharAbility
     {
         storedController = runtimeAnimatorController;
         Debug.Log("Controller Stored");
+    }
+
+    public void StopTimer()
+    {
+        if (changeActivated == true) // otherwise if you just randomly press this button the timer won't count down during transform
+        {
+            timerStopped = true;
+        }
     }
 
 }
