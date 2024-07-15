@@ -4,19 +4,40 @@ using UnityEngine;
 
 public class dummyCharacter : MonoBehaviour
 {
+    public enum CharacterType { Player, AI}
 
+    public GameObject CharacterModel;
+    public CharacterType CharacterMode = CharacterType.Player;
     public AIBrain Brain;
 
     private Animator _animator;
     private Rigidbody2D _rigidbody2D;
+    //private CharacterAbilitiy[] _abilities;
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>(); //real version gets this off the model. no model set then look to this gameobject.
+        if (CharacterModel != null) 
+        { 
+            _animator = CharacterModel.GetComponent<Animator>();
+            //_abilities = GetComponentsInChildren<CharacterAbility>();
+        }
+        else
+        {
+            _animator = GetComponent<Animator>();
+        }
+
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        Brain.SetCharacter(this); //set brain in-editor. only do this for AI Characters. Can look through this gameobject and children gameobjects to look for a brain first.
+
+        if(CharacterMode == CharacterType.AI)
+        {
+            if (Brain != null) 
+            { 
+                Brain.SetCharacter(this);
+            }
+        }
     }
 
+    //this will be done through the CharacterMovementScript
     public void MoveTowardsTarget(Transform target, float speed)
     {
         float step = speed * Time.deltaTime;
@@ -25,11 +46,17 @@ public class dummyCharacter : MonoBehaviour
 
     public void UpdateAnimatorBool(string name, bool value)
     {
-        _animator.SetBool(name, value);
+        if (_animator != null) 
+        {
+            _animator.SetBool(name, value);
+        }
     }
 
-    public void UpdateAnimatorFloat(string name, float value) 
+    public void UpdateAnimatorFloat(string name, float value)
     {
-        _animator.SetFloat(name, value);
+        if (_animator != null)
+        {
+            _animator.SetFloat(name, value);
+        }
     }
 }
