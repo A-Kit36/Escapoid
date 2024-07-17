@@ -20,7 +20,7 @@ public class AIActionPatrol : AIAction
     private float _distanceToTarget;
     public override void Execute()
     {
-        Brain.dummyCharacter1.MoveTowardsTarget(_currentPivot, _moveSpeed);
+        Brain.Character.MoveTowardsTarget(_currentPivot, _moveSpeed);
         _distanceToTarget = Vector2.Distance(transform.position, _currentPivot.position);
         if (_distanceToTarget <= 1f)
         {

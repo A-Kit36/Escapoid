@@ -9,7 +9,7 @@ public class AIBrain : MonoBehaviour
     public AIState CurrentBrainState;
     public float TimeInThisState;
     public Transform Target;
-    public Character dummyCharacter1 { get; private set; }
+    public Character Character { get; private set; }
 
     [Header("State")]
     /// whether or not this brain is active
@@ -31,14 +31,17 @@ public class AIBrain : MonoBehaviour
 
     private void Awake()
     {
-        foreach(AIState state in BrainStates)
+        foreach (AIState state in BrainStates)
         {
             state.SetBrain(this);
-        }
+        }        
+    }
+
+    private void Start()
+    {
         CurrentBrainState = BrainStates[0];
         CurrentBrainState.StateStart();
     }
-
     private void Update()
     {
         if (CurrentBrainState != null)
@@ -69,6 +72,6 @@ public class AIBrain : MonoBehaviour
 
     public void SetCharacter(Character dummyCharacter)
     {
-        dummyCharacter1 = dummyCharacter;    
+        Character = dummyCharacter;    
     }
 }

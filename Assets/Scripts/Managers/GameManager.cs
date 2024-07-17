@@ -1,28 +1,43 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public float awarenessLevel;
-    public float lives;
-    public bool isGamePaused;
+    public static GameManager Instance { get; private set; }
+    public float AwarenessLevel; //Capitalize public members i.e. AwarenessLevel this belongs in a CharacterAbility Script
+    
+    [SerializeField]
+    private int _maxLives;
+    [SerializeField]
+    private int _livesLeft;
+
+    private bool _isGamePaused;
+
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     void Start()
     {
-        awarenessLevel = 0f;
-        lives = 3f;
-    }
-
-    void Update()
-    {
-        
+        AwarenessLevel = 0f;
+        _livesLeft = 3;
     }
 
     public void RaiseAwareness()
     {
-        awarenessLevel += 1f;
-        if (awarenessLevel >= 10f)
+        AwarenessLevel += 1f;
+        if (AwarenessLevel >= 10f)
         {
             LoseLive();
             Debug.Log("CAUGHT");
@@ -32,8 +47,8 @@ public class GameManager : MonoBehaviour
 
     public void LoseLive()
     {
-        lives = lives--;
-        if (lives <= 0)
+        _livesLeft = _livesLeft--;
+        if (_livesLeft <= 0)
         {
             GameOver();
         }
@@ -41,7 +56,7 @@ public class GameManager : MonoBehaviour
 
     public void WinLive()
     {
-        lives = lives++;
+        _livesLeft = _livesLeft++;
     }
 
     public void GameOver()
@@ -52,17 +67,23 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        isGamePaused = true;
+        _isGamePaused = true;
         Time.timeScale = 0f;
+        GUIManager.Instance.OnPause();
     }
 
     public void ResumeGame()
     {
-        isGamePaused = false;
+        _isGamePaused = false;
         Time.timeScale = 1f;
     }
 
     public void RestartGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+    }
+
+    internal void RestartLevel()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
