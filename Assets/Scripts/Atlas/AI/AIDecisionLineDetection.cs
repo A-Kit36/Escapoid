@@ -16,7 +16,7 @@ public class AIDecisionLineDetection : AIDecision
     private void OnValidate()
     {
         if(_lineRenderer == null)
-        {
+        {            
             _lineRenderer = GetComponent<LineRenderer>();
         }
     }
@@ -56,6 +56,8 @@ public class AIDecisionLineDetection : AIDecision
         {
             _lineRenderer.SetPosition(0, transform.position);
             _lineRenderer.SetPosition(1, transform.position + Vector3.right * DetectionDistance);
+            _lineRenderer.startColor = Color.red;
+            _lineRenderer.endColor = Color.red;
             _lineRenderer.startWidth = RayWidth;
             _lineRenderer.endWidth = RayWidth;
         }        

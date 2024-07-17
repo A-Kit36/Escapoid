@@ -9,7 +9,7 @@ public class AIBrain : MonoBehaviour
     public AIState CurrentBrainState;
     public float TimeInThisState;
     public Transform Target;
-    public dummyCharacter dummyCharacter1 { get; private set; }
+    public Character dummyCharacter1 { get; private set; }
 
     [Header("State")]
     /// whether or not this brain is active
@@ -67,7 +67,7 @@ public class AIBrain : MonoBehaviour
         TimeInThisState = 0f;
     }
 
-    public void SetCharacter(dummyCharacter dummyCharacter)
+    public void SetCharacter(Character dummyCharacter)
     {
         dummyCharacter1 = dummyCharacter;    
     }

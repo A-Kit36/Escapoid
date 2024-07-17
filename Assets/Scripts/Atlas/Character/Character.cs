@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class dummyCharacter : MonoBehaviour
+public class Character : MonoBehaviour
 {
     public enum CharacterType { Player, AI}
 
