@@ -9,17 +9,17 @@ public class AIActionMoveTowards : AIAction
 
     public override void Execute()
     {
-        Brain.Character.UpdateAnimatorBool("Walking", true);
+        Brain.Character.UpdateAnimator("Walking", true);
         Brain.Character.MoveTowardsTarget(Brain.Target, _moveSpeed);
     }
 
     public override void OnEnterState()
     {
-        Brain.Character.UpdateAnimatorBool("Walking", true);
+        Brain.Character.UpdateAnimator("Walking", true);
     }
 
     public override void OnExitState()
     {
-        Brain.Character.UpdateAnimatorBool("Walking", false);
+        Brain.Character.UpdateAnimator("Walking", false);
     }
 }

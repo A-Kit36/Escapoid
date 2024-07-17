@@ -37,14 +37,14 @@ public class Character : MonoBehaviour
         }
     }
 
-    //this will be done through the CharacterMovementScript
+    //this will be done through the CharacterMovement script
     public void MoveTowardsTarget(Transform target, float speed)
     {
         float step = speed * Time.deltaTime;
         transform.position = Vector2.MoveTowards(transform.position, target.position, step);
     }
 
-    public void UpdateAnimatorBool(string name, bool value)
+    public void UpdateAnimator(string name, bool value)
     {
         if (_animator != null) 
         {
@@ -52,11 +52,18 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void UpdateAnimatorFloat(string name, float value)
+    public void UpdateAnimator(string name, float value)
     {
         if (_animator != null)
         {
             _animator.SetFloat(name, value);
+        }
+    }
+    public void UpdateAnimator(string triggerName)
+    {
+        if (_animator != null)
+        {
+            _animator.SetTrigger(name);
         }
     }
 }

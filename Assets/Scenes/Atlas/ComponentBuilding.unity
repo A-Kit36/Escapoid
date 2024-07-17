@@ -523,6 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be159efac24938947816448bb1969d8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsAbilityPermitted: 1
 --- !u!114 &173394478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2481,12 +2482,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1061337752}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -960, y: -540, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1626140184}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1242063523
 GameObject:
@@ -2932,6 +2933,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 597409634}
+  - {fileID: 1061337755}
   m_Father: {fileID: 1504948869}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4073,7 +4075,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1626140188}
         m_TargetAssemblyTypeName: GUIManager, Assembly-CSharp
-        m_MethodName: OnResume
+        m_MethodName: ResumeBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4299,4 +4301,3 @@ SceneRoots:
   - {fileID: 1567587223}
   - {fileID: 173394473}
   - {fileID: 1873809445}
-  - {fileID: 1061337755}

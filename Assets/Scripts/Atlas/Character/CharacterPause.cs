@@ -2,14 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterPause : MonoBehaviour
+public class CharacterPause : CharacterAbility
 {
-    // Update is called once per frame
-    void Update()
+
+    protected override void AbilityStart()
+    {
+        GameManager.Instance.PauseGame();
+    }
+
+    protected override void ProcessAbility()
     {
         if (InputManager.Instance.PauseButton)
         {
-            GameManager.Instance.PauseGame();
+            if (GameManager.Instance.IsGamePaused)
+            {
+                AbilityEnd();
+            }
+            else
+            {
+                AbilityStart();
+            }
         }
+    }
+    protected override void AbilityEnd()
+    {
+        GameManager.Instance.ResumeGame();
     }
 }

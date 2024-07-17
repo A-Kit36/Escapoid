@@ -6,16 +6,16 @@ public class AIActionDoNothing : AIAction
 {
     public override void Execute()
     {
-        Brain.Character.UpdateAnimatorBool("Idle", true);
+        Brain.Character.UpdateAnimator("Idle", true);
     }
 
     public override void OnEnterState()
     {
-        Brain.Character.UpdateAnimatorBool("Idle", true);
+        Brain.Character.UpdateAnimator("Idle", true);
     }
 
     public override void OnExitState()
     {
-        Brain.Character.UpdateAnimatorBool("Idle", false);
+        Brain.Character.UpdateAnimator("Idle", false);
     }
 }

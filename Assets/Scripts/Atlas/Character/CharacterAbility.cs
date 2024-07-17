@@ -2,17 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterAbility : MonoBehaviour
+public abstract class CharacterAbility : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public bool IsAbilityPermitted;
+
+    private Character _character;
+
+    private void Awake()
     {
-        
+        _character = GetComponentInParent<Character>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        InitializeAbility();
     }
+
+    private void Update()
+    {
+        ProcessAbility();
+    }
+
+    protected virtual void InitializeAbility()
+    {
+        IsAbilityPermitted = true;
+    }
+    protected abstract void AbilityStart();
+    protected abstract void ProcessAbility();
+    protected abstract void AbilityEnd();
+    
+
+
 }

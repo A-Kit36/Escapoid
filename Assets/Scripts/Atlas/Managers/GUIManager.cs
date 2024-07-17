@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,35 +6,50 @@ using UnityEngine.UIElements;
 
 public class GUIManager : MonoBehaviour
 {
-    public static GUIManager Instance { get; private set; }
-
     [SerializeField]
     private GameObject _pausePanel;
 
-    private void Awake()
+    private void OnEnable()
     {
-        if (Instance != null && Instance != this)
+        GameManager.GameStateChange += HandleGameStateChange;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.GameStateChange -= HandleGameStateChange;
+    }
+
+    private void HandleGameStateChange(GameState GameState)
+    {
+        switch (GameState)
         {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
+            case GameState.Paused:
+                OnPause();
+                break;
+            case GameState.Live:
+                OnLive();
+                break;
         }
     }
 
-    public void OnPause()
+    private void OnLive()
     {
-        _pausePanel.SetActive(true);
-    }
-    public void OnResume()
-    {
-        GameManager.Instance.ResumeGame();
         _pausePanel.SetActive(false);
     }
-    public void OnRestart()
+    private void OnPause()
+    {
+        _pausePanel.SetActive(true); 
+    }
+
+
+    public void RestartBtn()
     {
         GameManager.Instance.RestartLevel();
+    }
+
+    public void ResumeBtn()
+    {
+        GameManager.Instance.ResumeGame();
     }
 
 }

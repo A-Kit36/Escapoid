@@ -7,13 +7,17 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public float AwarenessLevel; //Capitalize public members i.e. AwarenessLevel this belongs in a CharacterAbility Script
+
+    public delegate void GameStateChanged(GameState GameState);
+    public static event GameStateChanged GameStateChange;
+
+    public bool IsGamePaused { get; private set; }
     
     [SerializeField]
     private int _maxLives;
     [SerializeField]
     private int _livesLeft;
 
-    private bool _isGamePaused;
 
 
     private void Awake()
@@ -62,20 +66,22 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Debug.Log("Game Over!");
+        GameStateChange(GameState.GameOver);
         //add a reload screen to beginning of game
     }
 
     public void PauseGame()
     {
-        _isGamePaused = true;
+        IsGamePaused = true;
         Time.timeScale = 0f;
-        GUIManager.Instance.OnPause();
+        GameStateChange(GameState.Paused);
     }
 
     public void ResumeGame()
     {
-        _isGamePaused = false;
+        IsGamePaused = false;
         Time.timeScale = 1f;
+        GameStateChange(GameState.Live);
     }
 
     public void RestartGame()
@@ -87,4 +93,11 @@ public class GameManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
+}
+
+public enum GameState
+{
+    Paused,
+    Live,
+    GameOver
 }
