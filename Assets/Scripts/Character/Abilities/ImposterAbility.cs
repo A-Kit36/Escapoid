@@ -13,6 +13,7 @@ public class ImposterAbility : CharAbility
     [SerializeField] private float imposterTime;
     private bool timerStopped = false;
     [SerializeField] private TextMeshProUGUI timerUI; // temporary workaround before we have a UI manager
+    [SerializeField] AudioClip turnSound;
     private bool changeActivated;
 
     private bool isActive = true;
@@ -53,12 +54,14 @@ public class ImposterAbility : CharAbility
         {
             playerAnimator.ChangeSkin();
             playerAnimator.ChangeController(storedController);
+            AudioPoolManager.Instance.PlayAudioClip(turnSound);
             imposterTime = 10f;
             changeActivated = true; // so the first time it HAS to happen while in trigger zone
         }
         else if (changeActivated && storedController != null)
         {
             playerAnimator.ChangeController(storedController);
+            AudioPoolManager.Instance.PlayAudioClip(turnSound);
             timerStopped = false;
         }
 

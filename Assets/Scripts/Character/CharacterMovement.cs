@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
+
     [SerializeField] float speed;
     private Vector2 movementInput;
     Rigidbody2D rb;
-    private Vector3 targetPos; // for tile-based movement
+    private Vector3 targetPos;
     public LayerMask solidObjectsLayer; // to check if our target tile has a solid collider, solid objects will be on a Layer called "SolidObjects"
 
     private bool isMovingToTile; // explicitly for the coroutine
@@ -18,7 +20,7 @@ public class CharacterMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         HandleMovement();
     }
@@ -48,10 +50,11 @@ public class CharacterMovement : MonoBehaviour
             isMoving = false;
         }
 
-
         targetPos = transform.position;
         targetPos.x += movementInput.x;
         targetPos.y += movementInput.y;
+
+        rb.transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
 
         if (IsWalkable(targetPos))
         {
@@ -74,17 +77,6 @@ public class CharacterMovement : MonoBehaviour
         isMovingToTile = false;
     }
 
-    private bool IsWalkable(Vector3 targetPos)
-    {
-        if (Physics2D.OverlapCircle(targetPos, 1f, solidObjectsLayer) != null)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
     public float GetPlayerX()
     {
         return movementInput.x;
@@ -98,5 +90,14 @@ public class CharacterMovement : MonoBehaviour
     public bool IsMoving()
     {
         return isMoving;
+    }
+
+    private bool IsWalkable(Vector3 targetPos)
+    {
+        if (Physics2D.OverlapCircle(targetPos, 0.5f, solidObjectsLayer) != null)
+        {
+            return false;
+        }
+        else { return true; }
     }
 }
