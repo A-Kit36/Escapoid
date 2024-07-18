@@ -1,16 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class CharacterAbility : MonoBehaviour
 {
-    public bool IsAbilityPermitted;
+    public bool IsAbilityPermitted = true;
 
-    private Character _character;
+    [SerializeField]    
+    public string AbilityName { get; private set; }
+
+    [NonSerialized]
+    public Character Character;
 
     private void Awake()
     {
-        _character = GetComponentInParent<Character>();
+        Character = GetComponentInParent<Character>();
     }
 
     private void Start()
@@ -21,6 +26,7 @@ public abstract class CharacterAbility : MonoBehaviour
     private void Update()
     {
         ProcessAbility();
+        UpdateCharacterAnimator();
     }
 
     protected virtual void InitializeAbility()
@@ -30,6 +36,7 @@ public abstract class CharacterAbility : MonoBehaviour
     protected abstract void AbilityStart();
     protected abstract void ProcessAbility();
     protected abstract void AbilityEnd();
+    protected abstract void UpdateCharacterAnimator();
     
 
 

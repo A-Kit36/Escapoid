@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class AIDecisionLineDetection : AIDecision
@@ -30,11 +31,10 @@ public class AIDecisionLineDetection : AIDecision
     {
         Transform target = null;
         RaycastHit2D raycast;
+        Vector2 direction = Brain.Character.CardinalToVect3(Brain.Character.FacingDirection);
+        raycast = Physics2D.BoxCast(transform.position - Vector3.right * RayWidth/ 2f, Vector2.one, 0f, direction, DetectionDistance, TargetLayer);
 
-        //TODO Grab direction character is facing and cast box that way 
-        raycast = Physics2D.BoxCast(transform.position - Vector3.right * RayWidth/ 2f, Vector2.one, 0f, Vector2.right, DetectionDistance, TargetLayer);
-
-        DrawDetectionLine();                
+        DrawDetectionLine(direction);                
 
         if (raycast)
         {
@@ -47,7 +47,9 @@ public class AIDecisionLineDetection : AIDecision
         }
     }
 
-    private void DrawDetectionLine()
+    
+
+    private void DrawDetectionLine(Vector3 dir)
     {
         //Debug.DrawLine(transform.position, transform.position + Vector3.right * 10);
 
@@ -55,7 +57,7 @@ public class AIDecisionLineDetection : AIDecision
         if (_lineRenderer != null)
         {
             _lineRenderer.SetPosition(0, transform.position);
-            _lineRenderer.SetPosition(1, transform.position + Vector3.right * DetectionDistance);
+            _lineRenderer.SetPosition(1, transform.position + dir * DetectionDistance);
             _lineRenderer.startColor = Color.red;
             _lineRenderer.endColor = Color.red;
             _lineRenderer.startWidth = RayWidth;

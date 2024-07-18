@@ -28,4 +28,8 @@ public class CharacterPause : CharacterAbility
     {
         GameManager.Instance.ResumeGame();
     }
+
+    protected override void UpdateCharacterAnimator()
+    {        
+    }
 }
