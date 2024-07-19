@@ -10,7 +10,8 @@ public class CharacterMovement : CharacterAbility
     private float _moveSpeed = 1f;
     [SerializeField]
     private float _turnTime = 0.2f;
-
+    [SerializeField]
+    private bool _StartFacingEast = true; //needs cleanup... 
     private bool _isMoving = false;
     private Cardinal _commandDirection;
     private Coroutine _movementCoroutine;
@@ -77,6 +78,7 @@ public class CharacterMovement : CharacterAbility
 
     public void MoveCharacter(Cardinal commandDirection)
     {
+        _commandDirection = commandDirection;
         if (!_isMoving)
         {
             if (Character.FacingDirection != _commandDirection)
@@ -113,6 +115,12 @@ public class CharacterMovement : CharacterAbility
     {
         Character.FacingDirection = dir;
         Vector3 faceDir = Character.GetDirectionScale(dir);
+
+        if (!_StartFacingEast)
+        {
+            Vector2 flip = new Vector2(-1, 1);
+            faceDir = faceDir * flip;
+        }
 
         StartCoroutine(TurnCharacter(faceDir));        
 

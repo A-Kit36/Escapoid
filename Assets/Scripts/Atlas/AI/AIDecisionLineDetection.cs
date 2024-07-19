@@ -29,7 +29,6 @@ public class AIDecisionLineDetection : AIDecision
 
     private bool DetectTarget()
     {
-        Transform target = null;
         RaycastHit2D raycast;
         Vector2 direction = Brain.Character.CardinalToVect3(Brain.Character.FacingDirection);
         raycast = Physics2D.BoxCast(transform.position - Vector3.right * RayWidth/ 2f, Vector2.one * RayWidth, 0f, direction, DetectionDistance, TargetLayer);
@@ -52,8 +51,6 @@ public class AIDecisionLineDetection : AIDecision
     private void DrawDetectionLine(Vector3 dir)
     {
         //Debug.DrawLine(transform.position, transform.position + Vector3.right * 10);
-
-        //TODO draw line based on direction Character is facing
         if (_lineRenderer != null)
         {
             _lineRenderer.SetPosition(0, transform.position);

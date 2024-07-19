@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CharacterPause : CharacterAbility
 {
+    private void OnValidate()
+    {
+        AbilityName = "Pause";
+    }
 
     protected override void AbilityStart()
     {
