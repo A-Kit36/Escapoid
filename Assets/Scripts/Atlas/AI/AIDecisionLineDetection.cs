@@ -32,7 +32,7 @@ public class AIDecisionLineDetection : AIDecision
         Transform target = null;
         RaycastHit2D raycast;
         Vector2 direction = Brain.Character.CardinalToVect3(Brain.Character.FacingDirection);
-        raycast = Physics2D.BoxCast(transform.position - Vector3.right * RayWidth/ 2f, Vector2.one, 0f, direction, DetectionDistance, TargetLayer);
+        raycast = Physics2D.BoxCast(transform.position - Vector3.right * RayWidth/ 2f, Vector2.one * RayWidth, 0f, direction, DetectionDistance, TargetLayer);
 
         DrawDetectionLine(direction);                
 

@@ -7,11 +7,10 @@ public abstract class CharacterAbility : MonoBehaviour
 {
     public bool IsAbilityPermitted = true;
 
-    [SerializeField]    
-    public string AbilityName { get; private set; }
-
     [NonSerialized]
     public Character Character;
+
+    public string AbilityName;
 
     private void Awake()
     {

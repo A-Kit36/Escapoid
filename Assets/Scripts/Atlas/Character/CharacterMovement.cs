@@ -15,16 +15,13 @@ public class CharacterMovement : CharacterAbility
     private Cardinal _commandDirection;
     private Coroutine _movementCoroutine;
 
+    private void OnValidate()
+    {
+        AbilityName = "Movement";
+    }
     protected override void AbilityStart()
-    {        
-        if (Character.FacingDirection != _commandDirection)
-        {
-            FaceDirection(_commandDirection);
-        }
-        else
-        {
-            MoveCharacter(_commandDirection);         
-        }  
+    {
+        MoveCharacter(_commandDirection);
     }
    
     protected override void AbilityEnd()
@@ -32,56 +29,72 @@ public class CharacterMovement : CharacterAbility
     }
     protected override void ProcessAbility()
     {
-        if (!_isMoving)
+        if (Character.CharacterMode == CharacterType.Player)
         {
-            if (InputManager.Instance.Horizontal > 0f)
-            {
-                //If facing East, move East else face East.
-                _commandDirection = Cardinal.East;
-                if (IsAbilityPermitted)
-                {
-                    AbilityStart();
-                }
-            }
-            else if (InputManager.Instance.Horizontal < 0f)
-            {
-                //If facing West, move West else face West.
-                _commandDirection = Cardinal.West;
-                if (IsAbilityPermitted)
-                {
-                    AbilityStart();
-                }
-            }
-            else if (InputManager.Instance.Vertical > 0f)
-            {
-                //If facing North, move North else face North.
-                _commandDirection = Cardinal.North;
-                if (IsAbilityPermitted)
-                {
-                    AbilityStart();
-                }
-            }
-            else if (InputManager.Instance.Vertical < 0f)
-            {
-                //If facing South, move South else face South.
-                _commandDirection = Cardinal.South;
-                if (IsAbilityPermitted)
-                {
-                    AbilityStart();
-                }
-            }
+            ReadInput();            
         }      
     }
-    private void MoveCharacter(Cardinal commandDirection)
+
+    private void ReadInput()
     {
-        Vector3 targetPos = transform.position + Character.CardinalToVect3(commandDirection);
-        Vector2 rayDirection = Character.CardinalToVect3(commandDirection);
-        //Debug.DrawRay(transform.position, rayDirection, Color.red, 2f);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, 1f, LayerMask.GetMask("Obstacle"));
-        if (!_isMoving && hit.collider == null)
+        if (InputManager.Instance.Horizontal > 0f)
         {
-            _movementCoroutine = StartCoroutine(MoveToPosition(targetPos));
+            //If facing East, move East else face East.
+            _commandDirection = Cardinal.East;
+            if (IsAbilityPermitted)
+            {
+                AbilityStart();
+            }
         }
+        else if (InputManager.Instance.Horizontal < 0f)
+        {
+            //If facing West, move West else face West.
+            _commandDirection = Cardinal.West;
+            if (IsAbilityPermitted)
+            {
+                AbilityStart();
+            }
+        }
+        else if (InputManager.Instance.Vertical > 0f)
+        {
+            //If facing North, move North else face North.
+            _commandDirection = Cardinal.North;
+            if (IsAbilityPermitted)
+            {
+                AbilityStart();
+            }
+        }
+        else if (InputManager.Instance.Vertical < 0f)
+        {
+            //If facing South, move South else face South.
+            _commandDirection = Cardinal.South;
+            if (IsAbilityPermitted)
+            {
+                AbilityStart();
+            }
+        }
+    }
+
+    public void MoveCharacter(Cardinal commandDirection)
+    {
+        if (!_isMoving)
+        {
+            if (Character.FacingDirection != _commandDirection)
+            {
+                FaceDirection(_commandDirection);
+            }
+            else
+            {
+                Vector3 targetPos = transform.position + Character.CardinalToVect3(commandDirection);
+                Vector2 rayDirection = Character.CardinalToVect3(commandDirection);
+                //Debug.DrawRay(transform.position, rayDirection, Color.red, 2f);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, 1f, LayerMask.GetMask("Obstacle"));
+                if (!_isMoving && hit.collider == null)
+                {
+                    _movementCoroutine = StartCoroutine(MoveToPosition(targetPos));
+                }
+            }
+        }        
     }
 
     private IEnumerator MoveToPosition(Vector3 target)

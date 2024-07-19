@@ -8,12 +8,12 @@ public class AIActionMoveTowards : AIAction
     private float _moveSpeed = 5f;
 
     private CharacterMovement _charMovement;
-    
 
     public override void Execute()
     {
-
-        //_charMovement.MoveTowardsTarget(Brain.Target);
+        //calculate next move
+        //send move command w/ cardinal
+        _charMovement.MoveCharacter(Cardinal.North);
     }
 
     public override void OnEnterState()
