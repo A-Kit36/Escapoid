@@ -2,11 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class dummyCharacter : MonoBehaviour
+public class dummyCharacter : MonoBehaviour, IRoleAssignable
 {
 
     public AIBrain Brain;
 
+    [SerializeField] private Role userRole;
+
+    public Role UserRole
+    {
+        get { return userRole; }
+        set { userRole = value; }
+    }
     private Animator _animator;
     private Rigidbody2D _rigidbody2D;
 
@@ -28,7 +35,7 @@ public class dummyCharacter : MonoBehaviour
         _animator.SetBool(name, value);
     }
 
-    public void UpdateAnimatorFloat(string name, float value) 
+    public void UpdateAnimatorFloat(string name, float value)
     {
         _animator.SetFloat(name, value);
     }

@@ -8,7 +8,9 @@ public class ImposterAbility : CharAbility
 {
     RuntimeAnimatorController enemyController;
     RuntimeAnimatorController storedController;
+    Role storedRole;
     PlayerAnimator playerAnimator;
+    RoleController roleController;
     private bool inTriggerZone = false;
     [SerializeField] private float imposterTime;
     private bool timerStopped = false;
@@ -27,6 +29,7 @@ public class ImposterAbility : CharAbility
     private void Awake()
     {
         playerAnimator = GetComponent<PlayerAnimator>();
+        roleController = GetComponent<RoleController>();
     }
 
     private void Update()
@@ -40,6 +43,7 @@ public class ImposterAbility : CharAbility
         if (imposterTime <= 0)
         {
             playerAnimator.ChangeBack();
+            roleController.SetOGRole();
             changeActivated = false;
         }
     }
@@ -54,6 +58,7 @@ public class ImposterAbility : CharAbility
         {
             playerAnimator.ChangeSkin();
             playerAnimator.ChangeController(storedController);
+            roleController.ChangeRole(storedRole);
             AudioPoolManager.Instance.PlayAudioClip(turnSound);
             imposterTime = 10f;
             changeActivated = true; // so the first time it HAS to happen while in trigger zone
@@ -61,6 +66,7 @@ public class ImposterAbility : CharAbility
         else if (changeActivated && storedController != null)
         {
             playerAnimator.ChangeController(storedController);
+            roleController.ChangeRole(storedRole);
             AudioPoolManager.Instance.PlayAudioClip(turnSound);
             timerStopped = false;
         }
@@ -73,8 +79,13 @@ public class ImposterAbility : CharAbility
         {
             Animator enemyAnimator = other.GetComponent<Animator>();
             enemyController = enemyAnimator.runtimeAnimatorController; //getting the controller the enemy animator uses
+
+            IRoleAssignable roleAssignable = other.GetComponent<IRoleAssignable>();
+            Role enemyRole = roleAssignable.UserRole;
+            Debug.Log($"Enemy role is {enemyRole}");
+
             inTriggerZone = true;
-            Imposter(enemyController); // storing this so the player can potentially store it as well
+            Imposter(enemyController, enemyRole); // storing this so the player can potentially store it as well
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -82,9 +93,10 @@ public class ImposterAbility : CharAbility
         inTriggerZone = false;
     }
 
-    private void Imposter(RuntimeAnimatorController runtimeAnimatorController)
+    private void Imposter(RuntimeAnimatorController runtimeAnimatorController, Role role)
     {
         storedController = runtimeAnimatorController;
+        storedRole = role;
         Debug.Log("Controller Stored");
     }
 
@@ -93,6 +105,7 @@ public class ImposterAbility : CharAbility
         if (changeActivated == true) // otherwise if you just randomly press this button the timer won't count down during transform
         {
             timerStopped = true;
+            roleController.SetOGRole();
         }
     }
 
