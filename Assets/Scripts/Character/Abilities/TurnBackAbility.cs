@@ -5,7 +5,6 @@ using UnityEngine;
 public class TurnBackAbility : CharAbility
 {
     PlayerAnimator playerAnimator;
-    [SerializeField] AudioClip turnSound;
     ImposterAbility imposterAbility;
     private bool isActive = true;
 
@@ -26,8 +25,11 @@ public class TurnBackAbility : CharAbility
         {
             return;
         }
-        playerAnimator.ChangeBack();
-        AudioPoolManager.Instance.PlayAudioClip(turnSound);
-        imposterAbility.StopTimer();
+
+        if (imposterAbility.IsImposter)
+        {
+            playerAnimator.ChangeBack();
+            imposterAbility.StopTimer();
+        }
     }
 }

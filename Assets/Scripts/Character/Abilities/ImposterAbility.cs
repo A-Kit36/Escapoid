@@ -15,8 +15,8 @@ public class ImposterAbility : CharAbility
     [SerializeField] private float imposterTime;
     private bool timerStopped = false;
     [SerializeField] private TextMeshProUGUI timerUI; // temporary workaround before we have a UI manager
-    [SerializeField] AudioClip turnSound;
     private bool changeActivated;
+    public bool IsImposter { get; private set; } // this is necessary for the TurnBackAbility script - it needs to monitor when we are in the fake form
 
     private bool isActive = true;
 
@@ -40,10 +40,11 @@ public class ImposterAbility : CharAbility
         }
         timerUI.text = imposterTime.ToString();
 
-        if (imposterTime <= 0)
+        if (imposterTime <= 0 && changeActivated)
         {
             playerAnimator.ChangeBack();
             roleController.SetOGRole();
+            IsImposter = false;
             changeActivated = false;
         }
     }
@@ -59,15 +60,15 @@ public class ImposterAbility : CharAbility
             playerAnimator.ChangeSkin();
             playerAnimator.ChangeController(storedController);
             roleController.ChangeRole(storedRole);
-            AudioPoolManager.Instance.PlayAudioClip(turnSound);
             imposterTime = 10f;
+            IsImposter = true;
             changeActivated = true; // so the first time it HAS to happen while in trigger zone
         }
         else if (changeActivated && storedController != null)
         {
             playerAnimator.ChangeController(storedController);
             roleController.ChangeRole(storedRole);
-            AudioPoolManager.Instance.PlayAudioClip(turnSound);
+            IsImposter = true;
             timerStopped = false;
         }
 
@@ -105,6 +106,7 @@ public class ImposterAbility : CharAbility
         if (changeActivated == true) // otherwise if you just randomly press this button the timer won't count down during transform
         {
             timerStopped = true;
+            IsImposter = false;
             roleController.SetOGRole();
         }
     }

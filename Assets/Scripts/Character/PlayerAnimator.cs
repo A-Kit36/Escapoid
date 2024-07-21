@@ -6,6 +6,7 @@ public class PlayerAnimator : MonoBehaviour
 {
     Animator animator;
     [SerializeField] RuntimeAnimatorController ogAnimatorController; // player's OG form
+    [SerializeField] AudioClip turnSound; // made sense to put this sound here because other transform abilities use the same sound
     Vector2 moveDirection = new Vector2(); //setting it like this so the player looks down from the beginning
     CharacterMovement characterMovement;
 
@@ -38,11 +39,13 @@ public class PlayerAnimator : MonoBehaviour
     public void ChangeController(RuntimeAnimatorController runtimeAnimatorController)
     {
         animator.runtimeAnimatorController = runtimeAnimatorController;
+        AudioPoolManager.Instance.PlayAudioClip(turnSound);
     }
 
     public void ChangeBack()
     {
         animator.runtimeAnimatorController = ogAnimatorController;
+        AudioPoolManager.Instance.PlayAudioClip(turnSound);
     }
 
 }
