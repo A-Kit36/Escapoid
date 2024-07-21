@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ImposterAbility : CharAbility
 {
     RuntimeAnimatorController enemyController;
     RuntimeAnimatorController storedController;
+    BoxCollider2D storedCollider;
+    BoxCollider2D OGcollider; // we need to store it so we can revert to it later
+    BoxCollider2D runtimeCollider;
     Role storedRole;
     PlayerAnimator playerAnimator;
     RoleController roleController;
@@ -30,6 +34,7 @@ public class ImposterAbility : CharAbility
     {
         playerAnimator = GetComponent<PlayerAnimator>();
         roleController = GetComponent<RoleController>();
+        OGcollider = GetComponent<BoxCollider2D>();
     }
 
     private void Update()
@@ -44,6 +49,7 @@ public class ImposterAbility : CharAbility
         {
             playerAnimator.ChangeBack();
             roleController.SetOGRole();
+            RestoreCollider();
             IsImposter = false;
             changeActivated = false;
         }
@@ -60,6 +66,7 @@ public class ImposterAbility : CharAbility
             playerAnimator.ChangeSkin();
             playerAnimator.ChangeController(storedController);
             roleController.ChangeRole(storedRole);
+            SwapColliders(storedCollider);
             imposterTime = 10f;
             IsImposter = true;
             changeActivated = true; // so the first time it HAS to happen while in trigger zone
@@ -68,6 +75,7 @@ public class ImposterAbility : CharAbility
         {
             playerAnimator.ChangeController(storedController);
             roleController.ChangeRole(storedRole);
+            SwapColliders(storedCollider);
             IsImposter = true;
             timerStopped = false;
         }
@@ -85,8 +93,10 @@ public class ImposterAbility : CharAbility
             Role enemyRole = roleAssignable.UserRole;
             Debug.Log($"Enemy role is {enemyRole}");
 
+            BoxCollider2D enemyCollider = FindChildCollider(other); // otherwise it gets the wrong collider
+
             inTriggerZone = true;
-            Imposter(enemyController, enemyRole); // storing this so the player can potentially store it as well
+            Imposter(enemyController, enemyRole, enemyCollider); // storing this so the player can potentially store it as well
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -94,10 +104,11 @@ public class ImposterAbility : CharAbility
         inTriggerZone = false;
     }
 
-    private void Imposter(RuntimeAnimatorController runtimeAnimatorController, Role role)
+    private void Imposter(RuntimeAnimatorController runtimeAnimatorController, Role role, BoxCollider2D boxCollider2D)
     {
         storedController = runtimeAnimatorController;
         storedRole = role;
+        storedCollider = boxCollider2D;
         Debug.Log("Controller Stored");
     }
 
@@ -107,8 +118,38 @@ public class ImposterAbility : CharAbility
         {
             timerStopped = true;
             IsImposter = false;
+            RestoreCollider();
             roleController.SetOGRole();
         }
+    }
+
+    private void SwapColliders(BoxCollider2D storedCollider)
+    {
+        OGcollider.enabled = false;
+        BoxCollider2D newBox = gameObject.AddComponent<BoxCollider2D>();
+        newBox.size = storedCollider.size;
+        newBox.offset = storedCollider.offset;
+        runtimeCollider = newBox;
+        runtimeCollider.enabled = true;
+    }
+
+    private void RestoreCollider()
+    {
+        runtimeCollider.enabled = false;
+        OGcollider.enabled = true;
+    }
+
+    private BoxCollider2D FindChildCollider(Collider2D enemyCollider)
+    {
+        BoxCollider2D[] colliders = enemyCollider.GetComponentsInChildren<BoxCollider2D>();
+        foreach (BoxCollider2D col in colliders)
+        {
+            if (col.gameObject != enemyCollider.gameObject) // excluding the collider on the main gameobject
+            {
+                return col;
+            }
+        }
+        return null;
     }
 
 }
