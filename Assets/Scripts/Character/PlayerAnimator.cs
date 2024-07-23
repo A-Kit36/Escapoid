@@ -8,13 +8,13 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] RuntimeAnimatorController ogAnimatorController; // player's OG form
     [SerializeField] AudioClip turnSound; // made sense to put this sound here because other transform abilities use the same sound
     Vector2 moveDirection = new Vector2(); //setting it like this so the player looks down from the beginning
-    CharacterMovement characterMovement;
+    PlayerMovement characterMovement;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        characterMovement = GetComponent<CharacterMovement>();
+        characterMovement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame

@@ -5,6 +5,8 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public static InputManager Instance;
+    public float Horizontal { get; private set; }
+    public float Vertical { get; private set; }
 
     private void Awake()
     {
@@ -20,6 +22,11 @@ public class InputManager : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        Horizontal = Input.GetAxis("Horizontal");
+        Vertical = Input.GetAxis("Vertical");
+    }
     public float GetHorizontalInput()
     {
         return Input.GetAxisRaw("Horizontal");

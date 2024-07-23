@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
 
     [SerializeField] float speed;
     private Vector2 movementInput;
     Rigidbody2D rb;
     private Vector3 targetPos;
-    public LayerMask solidObjectsLayer; // to check if our target tile has a solid collider, solid objects will be on a Layer called "SolidObjects"
+    //public LayerMask solidObjectsLayer; // to check if our target tile has a solid collider, solid objects will be on a Layer called "SolidObjects"
 
     private bool isMovingToTile; // explicitly for the coroutine
     private bool isMoving; // for animator
@@ -56,14 +56,14 @@ public class CharacterMovement : MonoBehaviour
 
         rb.transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
 
-        if (IsWalkable(targetPos))
+        /* if (IsWalkable(targetPos))
         {
             StartCoroutine(MoveToPosition(targetPos));
-        }
+        } */
 
     }
 
-    IEnumerator MoveToPosition(Vector3 target)
+    /* IEnumerator MoveToPosition(Vector3 target)
     {
         isMovingToTile = true;
 
@@ -75,7 +75,7 @@ public class CharacterMovement : MonoBehaviour
         rb.transform.position = target;
 
         isMovingToTile = false;
-    }
+    } */
 
     public float GetPlayerX()
     {
@@ -92,12 +92,12 @@ public class CharacterMovement : MonoBehaviour
         return isMoving;
     }
 
-    private bool IsWalkable(Vector3 targetPos)
+    /* private bool IsWalkable(Vector3 targetPos)
     {
         if (Physics2D.OverlapCircle(targetPos, 0.5f, solidObjectsLayer) != null)
         {
             return false;
         }
         else { return true; }
-    }
+    } */
 }

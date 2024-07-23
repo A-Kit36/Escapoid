@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AIBrain : MonoBehaviour
-{    
+{
     public List<AIState> BrainStates;
     public AIState CurrentBrainState;
     public float TimeInThisState;
     public Transform Target;
-    public dummyCharacter dummyCharacter1 { get; private set; }
+    public Character Character { get; private set; }
 
     [Header("State")]
     /// whether or not this brain is active
@@ -31,7 +31,7 @@ public class AIBrain : MonoBehaviour
 
     private void Awake()
     {
-        foreach(AIState state in BrainStates)
+        foreach (AIState state in BrainStates)
         {
             state.SetBrain(this);
         }
@@ -57,7 +57,7 @@ public class AIBrain : MonoBehaviour
                 CurrentBrainState.EvaluateTransitions();
                 _lastDecisionsUpdate = 0f;
             }
-        }        
+        }
     }
     public virtual void ChangeBrainState(string stateTransName)
     {
@@ -67,8 +67,8 @@ public class AIBrain : MonoBehaviour
         TimeInThisState = 0f;
     }
 
-    public void SetCharacter(dummyCharacter dummyCharacter)
+    public void SetCharacter(Character character)
     {
-        dummyCharacter1 = dummyCharacter;    
+        this.Character = character;
     }
 }
