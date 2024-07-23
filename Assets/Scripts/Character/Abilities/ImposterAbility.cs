@@ -91,7 +91,7 @@ public class ImposterAbility : CharAbility
 
             IRoleAssignable roleAssignable = other.GetComponent<IRoleAssignable>();
             Role enemyRole = roleAssignable.UserRole;
-            Debug.Log($"Enemy role is {enemyRole}");
+            //Debug.Log($"Enemy role is {enemyRole}");
 
             BoxCollider2D enemyCollider = FindChildCollider(other); // otherwise it gets the wrong collider
 

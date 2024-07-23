@@ -3,9 +3,18 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class VerifyCheck : MonoBehaviour, IVerify
+public abstract class VerifyCheck : MonoBehaviour, IVerify
 {
-    public bool FunctionChanged { get; private set; }
+    // This is the daddy of all other classes that will relate to the abilities of items. 
+    // That is the class that is the main blueprint for setting an accepted role and checking if the accepted role is fulfilled. 
+    // Two more abstract classes derive from it: InteractAbility and TriggerAbility - one for items where you need to press Space to interact, and another for items that work when triggered
+    public virtual bool InRange { get; private set; }
+    private bool functionChanged;
+    public bool FunctionChanged
+    {
+        get { return functionChanged; }
+        set { functionChanged = value; }
+    }
     [SerializeField] Role acceptedRole;
 
     public Role AcceptedRole
@@ -14,40 +23,34 @@ public class VerifyCheck : MonoBehaviour, IVerify
         set { acceptedRole = value; }
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
+    public virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             IRoleAssignable roleAssignable = other.GetComponent<IRoleAssignable>();
             Role playerRole = roleAssignable.UserRole;
             Debug.Log($"Player role is {playerRole}");
-
-            if (Verify(playerRole) == true)
-            {
-                ChangeFromRole();
-            }
+            Verify(playerRole);
+            InRange = true;
         }
+
     }
 
-    public bool Verify(Role retrievedRole)
+    public virtual void OnTriggerStay2D(Collider2D other)
     {
-        if (retrievedRole == acceptedRole)
+        if (other.CompareTag("Player"))
         {
-            return true;
-        }
-        else
-        {
-            return false;
+            IRoleAssignable roleAssignable = other.GetComponent<IRoleAssignable>();
+            Role playerRole = roleAssignable.UserRole;
+            Verify(playerRole);
         }
     }
-
-    public void ChangeFromRole()
+    public virtual void OnTriggerExit2D(Collider2D other)
     {
-        FunctionChanged = true;
+        InRange = false;
     }
 
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        FunctionChanged = false; // this is needed so the behaviour changes if the player changes the role
-    }
+    public abstract void Verify(Role retrievedRole);
+    public abstract void OldFunction();
+    public abstract void NewFunction();
 }

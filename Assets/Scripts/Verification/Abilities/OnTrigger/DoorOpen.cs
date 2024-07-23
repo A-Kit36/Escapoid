@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorOpen : VerifyAbility
+public class DoorOpen : TriggerAbility
 {
     SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
-    public override void Start()
+    private void Start()
     {
-        base.Start();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
 
     public override void OldFunction()
     {
