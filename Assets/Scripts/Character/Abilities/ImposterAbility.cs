@@ -16,9 +16,10 @@ public class ImposterAbility : CharAbility
     PlayerAnimator playerAnimator;
     RoleController roleController;
     private bool inTriggerZone = false;
+    SpriteRenderer ownspriteRenderer;
     [SerializeField] private float imposterTime;
     private bool timerStopped = false;
-    [SerializeField] private TextMeshProUGUI timerUI; // temporary workaround before we have a UI manager
+    //[SerializeField] private TextMeshProUGUI timerUI; // temporary workaround before we have a UI manager
     private bool changeActivated;
     public bool IsImposter { get; private set; } // this is necessary for the TurnBackAbility script - it needs to monitor when we are in the fake form
 
@@ -35,6 +36,7 @@ public class ImposterAbility : CharAbility
         playerAnimator = GetComponent<PlayerAnimator>();
         roleController = GetComponent<RoleController>();
         OGcollider = GetComponent<BoxCollider2D>();
+        ownspriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -43,7 +45,7 @@ public class ImposterAbility : CharAbility
         {
             imposterTime -= Time.deltaTime;
         }
-        timerUI.text = imposterTime.ToString();
+        //timerUI.text = imposterTime.ToString();
 
         if (imposterTime <= 0 && changeActivated)
         {
@@ -95,8 +97,16 @@ public class ImposterAbility : CharAbility
 
             BoxCollider2D enemyCollider = FindChildCollider(other); // otherwise it gets the wrong collider
 
+            SpriteRenderer enemyspriteRenderer = other.gameObject.GetComponent<SpriteRenderer>();
+            Vector2 enemyspriteSize = enemyspriteRenderer.bounds.size;
+            Vector2 ownspriteSize = ownspriteRenderer.bounds.size;
+
+            // calculating the scale factor between our size and enemy's size
+            Vector3 scaleFactor = new Vector3(enemyspriteSize.x / ownspriteSize.x, enemyspriteSize.y / ownspriteSize.y, 1.0f);
+
             inTriggerZone = true;
-            Imposter(enemyController, enemyRole, enemyCollider); // storing this so the player can potentially store it as well
+            Imposter(enemyController, enemyRole, enemyCollider, scaleFactor); // storing this so the player can potentially store it as well
+
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -104,11 +114,12 @@ public class ImposterAbility : CharAbility
         inTriggerZone = false;
     }
 
-    private void Imposter(RuntimeAnimatorController runtimeAnimatorController, Role role, BoxCollider2D boxCollider2D)
+    private void Imposter(RuntimeAnimatorController runtimeAnimatorController, Role role, BoxCollider2D boxCollider2D, Vector3 scale)
     {
         storedController = runtimeAnimatorController;
         storedRole = role;
         storedCollider = boxCollider2D;
+        transform.localScale = scale;
         Debug.Log("Controller Stored");
     }
 
@@ -135,7 +146,7 @@ public class ImposterAbility : CharAbility
 
     private void RestoreCollider()
     {
-        runtimeCollider.enabled = false;
+        Destroy(runtimeCollider);
         OGcollider.enabled = true;
     }
 
@@ -150,6 +161,11 @@ public class ImposterAbility : CharAbility
             }
         }
         return null;
+    }
+
+    private void RestoreSize()
+    {
+
     }
 
 }

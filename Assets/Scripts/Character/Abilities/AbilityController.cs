@@ -6,11 +6,13 @@ public class AbilityController : MonoBehaviour
 {
     [SerializeField] ImposterAbility imposterAbility;
     [SerializeField] TurnBackAbility turnBackAbility;
-    PlayerAnimator playerAnimator;
+    [SerializeField] LightAbility lightAbility;
+
+    RoleController roleController;
 
     private void Awake()
     {
-        playerAnimator = GetComponent<PlayerAnimator>();
+        roleController = GetComponent<RoleController>();
     }
 
     private void Update()
@@ -18,11 +20,16 @@ public class AbilityController : MonoBehaviour
         if (InputManager.Instance.GetImposterInput())
         {
             imposterAbility.Trigger();
+            if (roleController.UserRole == Role.VisionAlien)
+            {
+                lightAbility.Trigger();
+            }
         }
 
         if (InputManager.Instance.GetTurnBackInput())
         {
             turnBackAbility.Trigger();
+            lightAbility.Disable();
         }
     }
 
