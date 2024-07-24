@@ -13,11 +13,14 @@ public class ImposterAbility : CharAbility
     BoxCollider2D OGcollider; // we need to store it so we can revert to it later
     BoxCollider2D runtimeCollider;
     Role storedRole;
+    Vector3 ogScale;
+    Vector3 storedScale;
     PlayerAnimator playerAnimator;
     RoleController roleController;
     private bool inTriggerZone = false;
     SpriteRenderer ownspriteRenderer;
-    [SerializeField] private float imposterTime;
+    [SerializeField] float ImposterTimeSetting;
+    private float imposterTime;
     private bool timerStopped = false;
     //[SerializeField] private TextMeshProUGUI timerUI; // temporary workaround before we have a UI manager
     private bool changeActivated;
@@ -37,6 +40,7 @@ public class ImposterAbility : CharAbility
         roleController = GetComponent<RoleController>();
         OGcollider = GetComponent<BoxCollider2D>();
         ownspriteRenderer = GetComponent<SpriteRenderer>();
+        //ogScale = transform.localScale;
     }
 
     private void Update()
@@ -52,6 +56,7 @@ public class ImposterAbility : CharAbility
             playerAnimator.ChangeBack();
             roleController.SetOGRole();
             RestoreCollider();
+            ChangeSize();
             IsImposter = false;
             changeActivated = false;
         }
@@ -65,20 +70,13 @@ public class ImposterAbility : CharAbility
 
         if (inTriggerZone && !changeActivated)
         {
-            playerAnimator.ChangeSkin();
-            playerAnimator.ChangeController(storedController);
-            roleController.ChangeRole(storedRole);
-            SwapColliders(storedCollider);
-            imposterTime = 10f;
-            IsImposter = true;
+            PerformChange();
+            imposterTime = ImposterTimeSetting;
             changeActivated = true; // so the first time it HAS to happen while in trigger zone
         }
         else if (changeActivated && storedController != null)
         {
-            playerAnimator.ChangeController(storedController);
-            roleController.ChangeRole(storedRole);
-            SwapColliders(storedCollider);
-            IsImposter = true;
+            PerformChange();
             timerStopped = false;
         }
 
@@ -119,8 +117,8 @@ public class ImposterAbility : CharAbility
         storedController = runtimeAnimatorController;
         storedRole = role;
         storedCollider = boxCollider2D;
-        transform.localScale = scale;
-        Debug.Log("Controller Stored");
+        storedScale = scale;
+        //Debug.Log("Controller Stored");
     }
 
     public void StopTimer()
@@ -131,6 +129,7 @@ public class ImposterAbility : CharAbility
             IsImposter = false;
             RestoreCollider();
             roleController.SetOGRole();
+            ChangeSize();
         }
     }
 
@@ -163,9 +162,20 @@ public class ImposterAbility : CharAbility
         return null;
     }
 
-    private void RestoreSize()
+    private void ChangeSize()
     {
+        transform.localScale = storedScale;
+        //Debug.Log("Scale Changed");
+    }
 
+    private void PerformChange()
+    {
+        playerAnimator.ChangeSkin();
+        playerAnimator.ChangeController(storedController);
+        roleController.ChangeRole(storedRole);
+        SwapColliders(storedCollider);
+        ChangeSize();
+        IsImposter = true;
     }
 
 }

@@ -29,6 +29,10 @@ public class AbilityController : MonoBehaviour
         if (InputManager.Instance.GetTurnBackInput())
         {
             turnBackAbility.Trigger();
+        }
+
+        if (!imposterAbility.IsImposter)
+        {
             lightAbility.Disable();
         }
     }
