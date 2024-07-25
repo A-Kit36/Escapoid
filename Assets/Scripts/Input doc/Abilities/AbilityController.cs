@@ -17,7 +17,7 @@ public class AbilityController : MonoBehaviour
 
     private void Update()
     {
-        if (InputManager.Instance.GetImposterInput())
+        if (InputManagerOption.Instance.GetImposterInput())
         {
             imposterAbility.Trigger();
             if (roleController.UserRole == Role.VisionAlien)
@@ -26,7 +26,7 @@ public class AbilityController : MonoBehaviour
             }
         }
 
-        if (InputManager.Instance.GetTurnBackInput())
+        if (InputManagerOption.Instance.GetTurnBackInput())
         {
             turnBackAbility.Trigger();
         }

@@ -38,7 +38,7 @@ public class CharacterMovement : CharacterAbility
 
     private void ReadInput()
     {
-        if (InputManager.Instance.Horizontal > 0f)
+        if (InputManagerOption.Instance.Horizontal > 0f)
         {
             //If facing East, move East else face East.
             _commandDirection = Cardinal.East;
@@ -47,7 +47,7 @@ public class CharacterMovement : CharacterAbility
                 AbilityStart();
             }
         }
-        else if (InputManager.Instance.Horizontal < 0f)
+        else if (InputManagerOption.Instance.Horizontal < 0f)
         {
             //If facing West, move West else face West.
             _commandDirection = Cardinal.West;
@@ -56,7 +56,7 @@ public class CharacterMovement : CharacterAbility
                 AbilityStart();
             }
         }
-        else if (InputManager.Instance.Vertical > 0f)
+        else if (InputManagerOption.Instance.Vertical > 0f)
         {
             //If facing North, move North else face North.
             _commandDirection = Cardinal.North;
@@ -65,7 +65,7 @@ public class CharacterMovement : CharacterAbility
                 AbilityStart();
             }
         }
-        else if (InputManager.Instance.Vertical < 0f)
+        else if (InputManagerOption.Instance.Vertical < 0f)
         {
             //If facing South, move South else face South.
             _commandDirection = Cardinal.South;

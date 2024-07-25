@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class InputManagerOption : MonoBehaviour
 {
-    public static InputManager Instance;
+    public static InputManagerOption Instance;
     public float Horizontal { get; private set; }
     public float Vertical { get; private set; }
 

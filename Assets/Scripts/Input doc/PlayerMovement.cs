@@ -32,8 +32,8 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        movementInput.x = InputManager.Instance.GetHorizontalInput();
-        movementInput.y = InputManager.Instance.GetVerticalInput();
+        movementInput.x = InputManagerOption.Instance.GetHorizontalInput();
+        movementInput.y = InputManagerOption.Instance.GetVerticalInput();
 
         // removing diagonal movement
         if (movementInput.x != 0)

@@ -8,7 +8,7 @@ public abstract class InteractAbility : VerifyCheck
 
     public virtual void Update()
     {
-        if (InputManager.Instance.GetInteractInput() && InRange)
+        if (InputManagerOption.Instance.GetInteractInput() && InRange)
         {
             if (FunctionChanged)
             {
