@@ -6,11 +6,13 @@ public class Movement : MonoBehaviour
 {
     private float verticalMovement;
     private float horizontalMovement;  
-    public float speed = 5.0f;  
+    public float speed = 5.0f;
 
-    void Start()
+    private Rigidbody2D _rigidbody2D;
+
+    void Awake()
     {
-        
+        _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -18,7 +20,9 @@ public class Movement : MonoBehaviour
         verticalMovement = Input.GetAxis("Vertical");
         horizontalMovement = Input.GetAxis("Horizontal");
 
-        transform.Translate(Vector2.up * speed * Time.deltaTime * verticalMovement);
-        transform.Translate(Vector2.right * speed * Time.deltaTime * horizontalMovement);
+        /*transform.Translate(Vector2.up * speed * Time.deltaTime * verticalMovement);
+        transform.Translate(Vector2.right * speed * Time.deltaTime * horizontalMovement);*/
+
+        _rigidbody2D.velocity = new Vector2(horizontalMovement * speed, verticalMovement * speed);
     }
 }

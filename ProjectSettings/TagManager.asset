@@ -9,19 +9,19 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Obstacle
   - Water
   - UI
+  - Enemy
+  - Ground
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player_Alien
+  - Player_Scientist
+  - Player_Agent
+  - Player_Soldier
   - 
   - 
   - 
@@ -41,4 +41,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 3100935763
+    locked: 0
+  - name: Player
+    uniqueID: 2759406485
     locked: 0
