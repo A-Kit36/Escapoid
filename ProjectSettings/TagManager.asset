@@ -4,24 +4,24 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - EnemyWeapon
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Obstacle
+  - 
   - Water
   - UI
-  - Enemy
+  - SolidObjects
+  - Player
   - Ground
   - 
   - 
   - 
   - 
-  - Player_Alien
-  - Player_Scientist
-  - Player_Agent
-  - Player_Soldier
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -43,8 +43,5 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Floor
-    uniqueID: 3100935763
-    locked: 0
-  - name: Player
-    uniqueID: 2759406485
+    uniqueID: 689559253
     locked: 0
