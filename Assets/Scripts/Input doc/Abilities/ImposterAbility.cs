@@ -13,12 +13,9 @@ public class ImposterAbility : CharAbility
     BoxCollider2D OGcollider; // we need to store it so we can revert to it later
     BoxCollider2D runtimeCollider;
     Role storedRole;
-    Vector3 ogScale;
-    Vector3 storedScale;
     PlayerAnimator playerAnimator;
     RoleController roleController;
     private bool inTriggerZone = false;
-    SpriteRenderer ownspriteRenderer;
     [SerializeField] float ImposterTimeSetting;
     private float imposterTime;
     private bool timerStopped = false;
@@ -26,20 +23,11 @@ public class ImposterAbility : CharAbility
     private bool changeActivated;
     public bool IsImposter { get; private set; } // this is necessary for the TurnBackAbility script - it needs to monitor when we are in the fake form
 
-    private bool isActive = true;
-
-    public override bool IsActive
-    {
-        get { return isActive; }
-        set { isActive = value; }
-    }
-
     private void Awake()
     {
         playerAnimator = GetComponent<PlayerAnimator>();
         roleController = GetComponent<RoleController>();
         OGcollider = GetComponent<BoxCollider2D>();
-        ownspriteRenderer = GetComponent<SpriteRenderer>();
         //ogScale = transform.localScale;
     }
 
@@ -56,14 +44,13 @@ public class ImposterAbility : CharAbility
             playerAnimator.ChangeBack();
             roleController.SetOGRole();
             RestoreCollider();
-            ChangeSize();
             IsImposter = false;
             changeActivated = false;
         }
     }
     public override void Trigger()
     {
-        if (!isActive)
+        if (!IsActive)
         {
             return;
         }
@@ -95,15 +82,8 @@ public class ImposterAbility : CharAbility
 
             BoxCollider2D enemyCollider = FindChildCollider(other); // otherwise it gets the wrong collider
 
-            SpriteRenderer enemyspriteRenderer = other.gameObject.GetComponent<SpriteRenderer>();
-            Vector2 enemyspriteSize = enemyspriteRenderer.bounds.size;
-            Vector2 ownspriteSize = ownspriteRenderer.bounds.size;
-
-            // calculating the scale factor between our size and enemy's size
-            Vector3 scaleFactor = new Vector3(enemyspriteSize.x / ownspriteSize.x, enemyspriteSize.y / ownspriteSize.y, 1.0f);
-
             inTriggerZone = true;
-            Imposter(enemyController, enemyRole, enemyCollider, scaleFactor); // storing this so the player can potentially store it as well
+            Imposter(enemyController, enemyRole, enemyCollider); // storing this so the player can potentially store it as well
 
         }
     }
@@ -112,12 +92,11 @@ public class ImposterAbility : CharAbility
         inTriggerZone = false;
     }
 
-    private void Imposter(RuntimeAnimatorController runtimeAnimatorController, Role role, BoxCollider2D boxCollider2D, Vector3 scale)
+    private void Imposter(RuntimeAnimatorController runtimeAnimatorController, Role role, BoxCollider2D boxCollider2D)
     {
         storedController = runtimeAnimatorController;
         storedRole = role;
         storedCollider = boxCollider2D;
-        storedScale = scale;
         //Debug.Log("Controller Stored");
     }
 
@@ -129,7 +108,6 @@ public class ImposterAbility : CharAbility
             IsImposter = false;
             RestoreCollider();
             roleController.SetOGRole();
-            ChangeSize();
         }
     }
 
@@ -162,19 +140,12 @@ public class ImposterAbility : CharAbility
         return null;
     }
 
-    private void ChangeSize()
-    {
-        transform.localScale = storedScale;
-        //Debug.Log("Scale Changed");
-    }
-
     private void PerformChange()
     {
         playerAnimator.ChangeSkin();
         playerAnimator.ChangeController(storedController);
         roleController.ChangeRole(storedRole);
         SwapColliders(storedCollider);
-        ChangeSize();
         IsImposter = true;
     }
 

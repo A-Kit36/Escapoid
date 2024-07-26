@@ -51,4 +51,9 @@ public class InputManagerOption : MonoBehaviour
     {
         return Input.GetButtonDown("Interact"); // space button
     }
+
+    public bool GetExtraAbilityInput()
+    {
+        return Input.GetButtonDown("ExtraAbility"); // R button
+    }
 }

@@ -14,15 +14,20 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isMovingToTile; // explicitly for the coroutine
     private bool isMoving; // for animator
+    private bool canMove;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        canMove = true;
     }
     // Update is called once per frame
     void FixedUpdate()
     {
-        HandleMovement();
+        if (canMove)
+        {
+            HandleMovement();
+        }
     }
 
     void HandleMovement()
@@ -90,6 +95,17 @@ public class PlayerMovement : MonoBehaviour
     public bool IsMoving()
     {
         return isMoving;
+    }
+
+    public void EnableMovenent()
+    {
+        canMove = true;
+
+    }
+
+    public void DisableMovenent()
+    {
+        canMove = false;
     }
 
     /* private bool IsWalkable(Vector3 targetPos)

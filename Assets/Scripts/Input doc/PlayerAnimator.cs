@@ -48,4 +48,14 @@ public class PlayerAnimator : MonoBehaviour
         AudioPoolManager.Instance.PlayAudioClip(turnSound);
     }
 
+    public void GoIntoShell()
+    {
+        animator.SetTrigger("Shell"); // for shelllurking only
+    }
+
+    public void UnShell()
+    {
+        animator.SetTrigger("UnShell"); // for shelllurking only
+    }
+
 }
