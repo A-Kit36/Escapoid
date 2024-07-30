@@ -7,8 +7,9 @@ public class ShellLurk : CharAbility
     PlayerMovement playerMovement;
     PlayerAnimator playerAnimator;
     Rigidbody2D rb;
-
-    private bool movingShell = false;
+    private Vector2 movementInput;
+    private bool isMoving = false; // this bool is for checking if we are moving while in shell form
+    [SerializeField] private bool movingShell = false; // this bool is for enabling shell-based movement(from collision to collision)
     private bool inShell = false;
 
     [SerializeField] float shellSpeed;
@@ -65,6 +66,7 @@ public class ShellLurk : CharAbility
 
     private void UnShell()
     {
+        isMoving = false;
         inShell = false;
         DisableShellMove();
         playerAnimator.UnShell();
@@ -74,6 +76,29 @@ public class ShellLurk : CharAbility
 
     private void HandleShellMovement()
     {
+        movementInput.x = InputManagerOption.Instance.GetHorizontalInput();
+        movementInput.y = InputManagerOption.Instance.GetVerticalInput();
+
+        // removing diagonal movement
+        if (movementInput.x != 0)
+        {
+            movementInput.y = 0;
+        }
+
+        if (!isMoving)
+        {
+            rb.velocity = movementInput * shellSpeed;
+            isMoving = true;
+        }
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+
+        rb.velocity = Vector2.zero;
+        DisableShellMove();
+
 
     }
 
@@ -84,7 +109,9 @@ public class ShellLurk : CharAbility
 
     private void DisableShellMove()
     {
+        rb.velocity = Vector2.zero;
         movingShell = false;
+        isMoving = false;
     }
 
     public override void Deactivate()

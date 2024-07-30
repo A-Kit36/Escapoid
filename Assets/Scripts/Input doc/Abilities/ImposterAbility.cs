@@ -19,7 +19,7 @@ public class ImposterAbility : CharAbility
     [SerializeField] float ImposterTimeSetting;
     private float imposterTime;
     private bool timerStopped = false;
-    //[SerializeField] private TextMeshProUGUI timerUI; // temporary workaround before we have a UI manager
+    [SerializeField] private TextMeshProUGUI timerUI; // temporary workaround before we have a UI manager
     private bool changeActivated;
     public bool IsImposter { get; private set; } // this is necessary for the TurnBackAbility script - it needs to monitor when we are in the fake form
 
@@ -37,7 +37,8 @@ public class ImposterAbility : CharAbility
         {
             imposterTime -= Time.deltaTime;
         }
-        //timerUI.text = imposterTime.ToString();
+        float RoundedTime = Mathf.Abs(imposterTime);
+        timerUI.text = RoundedTime.ToString();
 
         if (imposterTime <= 0 && changeActivated)
         {

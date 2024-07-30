@@ -7,7 +7,6 @@ public class AbilityController : MonoBehaviour
     [SerializeField] ImposterAbility imposterAbility;
     [SerializeField] TurnBackAbility turnBackAbility;
     [SerializeField] LightAbility lightAbility;
-    [SerializeField] ShellLurk shellLurk;
 
     RoleController roleController;
 
@@ -25,21 +24,21 @@ public class AbilityController : MonoBehaviour
             {
                 lightAbility.Trigger();
             }
-            if (roleController.UserRole == Role.ShellLurker)
+            /* if (roleController.UserRole == Role.ShellLurker)
             {
                 shellLurk.Activate();
-            }
+            } */
         }
 
         if (InputManagerOption.Instance.GetTurnBackInput())
         {
             turnBackAbility.Trigger();
+            //shellLurk.Deactivate();
         }
 
         if (!imposterAbility.IsImposter)
         {
             lightAbility.Disable();
-            shellLurk.Deactivate();
         }
     }
 
