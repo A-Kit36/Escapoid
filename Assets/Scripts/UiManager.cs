@@ -11,28 +11,29 @@ public class UiManager : MonoBehaviour
     public GameObject startMenu;
     public GameObject pauseMenu;
     public GameObject gameOver;
-    public GameObject dialogue1;
-    public GameObject dialogue2;
+    public GameObject dialogueBox;
+    public TextMeshProUGUI dialogueText;
+    //public GameObject dialogue2;
     public GameObject menuHUD1;
     public GameObject menuHUD2;
     public GameObject storyScreen;
     public GameObject playHUD;
-    
+
     void Start()
     {
-        
+
     }
 
     void Update()
     {
-        
+
     }
 
     public void NewGame()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         startMenu.SetActive(false);
-    } 
+    }
     public void Continue()
     {
         startMenu.SetActive(false);
@@ -59,7 +60,7 @@ public class UiManager : MonoBehaviour
     }
     public void GameOver()
     {
-        
+
     }
     public void MainHUD()
     {
@@ -81,6 +82,6 @@ public class UiManager : MonoBehaviour
     {
 
     }
-    
-    
+
+
 }

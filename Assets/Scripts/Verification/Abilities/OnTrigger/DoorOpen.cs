@@ -25,6 +25,7 @@ public class DoorOpen : TriggerAbility
     {
         AudioPoolManager.Instance.PlayAudioClip(acceptedSound);
         spriteRenderer.sprite = openSprite;
+        GameManager.Instance.NextLevel();
         //gameObject.SetActive(false);
         //spriteRenderer.color = Color.green;
     }

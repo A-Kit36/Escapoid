@@ -48,6 +48,15 @@ public class ImposterAbility : CharAbility
             IsImposter = false;
             changeActivated = false;
         }
+
+        if (DialogueBoxController.Instance.dialogueActive)
+        {
+            timerStopped = true;
+        }
+        else if (IsImposter)
+        {
+            timerStopped = false;
+        }
     }
     public override void Trigger()
     {
@@ -143,11 +152,13 @@ public class ImposterAbility : CharAbility
 
     private void PerformChange()
     {
-        playerAnimator.ChangeSkin();
-        playerAnimator.ChangeController(storedController);
+        playerAnimator.ChangeSkin(storedController);
+        //yield return new WaitForSeconds(0.7f);
+        //playerAnimator.ChangeController(storedController);
         roleController.ChangeRole(storedRole);
         SwapColliders(storedCollider);
         IsImposter = true;
+        //yield return null;
     }
 
 }

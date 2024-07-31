@@ -42,6 +42,18 @@ public class AbilityController : MonoBehaviour
         }
     }
 
+    public void DisableAbilities()
+    {
+        turnBackAbility.Deactivate();
+        imposterAbility.Deactivate();
+    }
+    public void EnableAbilities()
+    {
+        turnBackAbility.Activate();
+        imposterAbility.Activate();
+    }
+
+
     // here we can also deactivate abilities when needed
     // I wish there was a way to control the ability animations from here, so we don't have to fetch animator for every ability individually, but I am still not sure how to do it best
 }

@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
             canvasBlack.alpha += TimeToFade * Time.deltaTime;
             yield return null;
         } */
+        SoundManager.Instance.StopMusic();
         canvasBlack.alpha = 1;
         AudioPoolManager.Instance.PlayAudioClip(gameOverSound);
         yield return new WaitForSeconds(2);
