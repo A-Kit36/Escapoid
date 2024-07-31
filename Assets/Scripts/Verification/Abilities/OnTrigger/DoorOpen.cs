@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class DoorOpen : TriggerAbility
 {
-    SpriteRenderer spriteRenderer;
-    [SerializeField] Sprite openSprite;
+    protected SpriteRenderer spriteRenderer;
+    [SerializeField] protected Sprite openSprite;
     [SerializeField] AudioClip deniedSound;
-    [SerializeField] AudioClip acceptedSound;
+    [SerializeField] protected AudioClip acceptedSound;
 
     // Start is called before the first frame update
     private void Start()
