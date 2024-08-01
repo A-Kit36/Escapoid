@@ -8,16 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Atlas/Main Menu.unity
     guid: 970a867c648d9bb43a3b4f5d6140af29
-  - enabled: 0
-    path: Assets/Scenes/Atlas/ComponentBuilding.unity
-    guid: a01375fd1ce943241b0be7185216961e
   - enabled: 1
     path: Assets/Scenes/Tutorial Level.unity
     guid: bafff24f104ae544094931af1cd33fc8
   - enabled: 1
     path: Assets/Scenes/Glimmerwraith.unity
     guid: 69df5dd5ea6c6f443a87a3c91c81cd79
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Lvl3.unity
     guid: 40c5269313ec54348939340d74d64191
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: e8ff5dbfe94f09e45a998cb4ea06f3ef
   m_configObjects: {}

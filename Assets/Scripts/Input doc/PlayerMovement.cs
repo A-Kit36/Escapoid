@@ -106,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
     public void DisableMovenent()
     {
         canMove = false;
+        isMoving = false;
     }
 
     /* private bool IsWalkable(Vector3 targetPos)

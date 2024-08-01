@@ -6,8 +6,7 @@ using TMPro;
 public class OpenFromTrigger : MonoBehaviour
 {
     [SerializeField] Sprite doorOpen;
-    [SerializeField] private TextMeshProUGUI textbubbleUI;
-    [SerializeField] private GameObject textPanel;
+    [SerializeField] private ActivateDialogue closedDialogue;
     [SerializeField] private AudioClip closedClip;
     SpriteRenderer spriteRenderer;
     private bool isOpen;
@@ -22,7 +21,7 @@ public class OpenFromTrigger : MonoBehaviour
     {
         if (!isOpen)
         {
-            StartCoroutine(ShowTextBubble());
+            ShowTextBubble();
         }
         else
         {
@@ -30,13 +29,15 @@ public class OpenFromTrigger : MonoBehaviour
         }
     }
 
-    private IEnumerator ShowTextBubble()
+    private void ShowTextBubble()
     {
         AudioPoolManager.Instance.PlayAudioClip(closedClip);
-        textbubbleUI.text = "Closed. Maybe there's a mechanism somewhere that opens it?";
-        textPanel.SetActive(true);
-        yield return new WaitForSeconds(3);
-        textPanel.SetActive(false);
+        closedDialogue.Activate();
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        closedDialogue.Deactivate();
     }
 
     public void OpenDoor()
