@@ -93,6 +93,8 @@ public class GameManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
+    public void NextLevel()
+    {}
 }
 
 public enum GameState
