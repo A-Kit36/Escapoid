@@ -6,13 +6,7 @@ public class TurnBackAbility : CharAbility
 {
     PlayerAnimator playerAnimator;
     ImposterAbility imposterAbility;
-    private bool isActive = true;
 
-    public override bool IsActive
-    {
-        get { return isActive; }
-        set { isActive = value; }
-    }
 
     private void Awake()
     {
@@ -21,7 +15,7 @@ public class TurnBackAbility : CharAbility
     }
     public override void Trigger()
     {
-        if (!isActive)
+        if (!IsActive)
         {
             return;
         }

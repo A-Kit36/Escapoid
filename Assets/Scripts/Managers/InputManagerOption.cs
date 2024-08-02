@@ -7,6 +7,7 @@ public class InputManagerOption : MonoBehaviour
     public static InputManagerOption Instance;
     public float Horizontal { get; private set; }
     public float Vertical { get; private set; }
+    private bool buttonsDisabled = false;
 
     private void Awake()
     {
@@ -39,16 +40,46 @@ public class InputManagerOption : MonoBehaviour
 
     public bool GetImposterInput()
     {
+        if (buttonsDisabled)
+        {
+            return false;
+        }
         return Input.GetButtonDown("Imposter"); // button E
     }
 
     public bool GetTurnBackInput()
     {
+        if (buttonsDisabled)
+        {
+            return false;
+        }
         return Input.GetButtonDown("TurnBack"); // button Q
     }
 
     public bool GetInteractInput()
     {
+        if (buttonsDisabled)
+        {
+            return false;
+        }
         return Input.GetButtonDown("Interact"); // space button
+    }
+
+    public bool GetExtraAbilityInput()
+    {
+        if (buttonsDisabled)
+        {
+            return false;
+        }
+        return Input.GetButtonDown("ExtraAbility"); // R button
+    }
+
+    public void DisableAllButtons()
+    {
+        buttonsDisabled = true;
+    }
+    public void EnableAllButtons()
+    {
+        buttonsDisabled = false;
     }
 }

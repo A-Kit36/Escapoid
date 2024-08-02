@@ -5,16 +5,22 @@ using TMPro;
 
 public class StepPlatform : TriggerAbility
 {
-    [SerializeField] LockedDoor theDoor;
-    [SerializeField] private TextMeshProUGUI textbubbleUI;
-    [SerializeField] private GameObject textPanel;
+    [SerializeField] OpenFromTrigger theDoor;
     [SerializeField] private AudioClip click;
+    [SerializeField] private ActivateDialogue toosmallDialogue;
+    [SerializeField] private ActivateDialogue clickedPanel;
     private bool deedDone = false;
+    private bool oldFuncActivated = false;
 
     public override void OldFunction()
     {
-        textbubbleUI.text = "I think I need to be heavier...";
-        textPanel.SetActive(true);
+        if (oldFuncActivated)
+        {
+            return;
+        }
+        toosmallDialogue.Activate();
+        //textbubbleUI.text = "I think I need to be heavier...";
+        //textPanel.SetActive(true);
     }
 
     public override void NewFunction()
@@ -23,16 +29,20 @@ public class StepPlatform : TriggerAbility
         {
             return;
         }
+        toosmallDialogue.Deactivate();
         deedDone = true;
-        textPanel.SetActive(false);
         theDoor.OpenDoor();
+        clickedPanel.Activate();
         AudioPoolManager.Instance.PlayAudioClip(click);
     }
+
 
     public override void OnTriggerExit2D(Collider2D other)
     {
         base.OnTriggerExit2D(other);
-        textPanel.SetActive(false);
+        toosmallDialogue.Deactivate();
+        clickedPanel.Deactivate();
     }
+
 
 }

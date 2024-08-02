@@ -4,7 +4,13 @@ using UnityEngine;
 
 public abstract class CharAbility : MonoBehaviour
 {
-    public abstract bool IsActive { get; set; }
+    [SerializeField] bool isActive = true;
+
+    public virtual bool IsActive
+    {
+        get { return isActive; }
+        set { isActive = value; }
+    }
     public abstract void Trigger();
 
     public virtual void Activate()

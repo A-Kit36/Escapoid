@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Guard
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - SolidObjects
   - Player
   - Ground
-  - 
-  - 
+  - NPC
+  - CamConfiner
   - 
   - 
   - 
@@ -44,4 +45,10 @@ TagManager:
     locked: 0
   - name: Floor
     uniqueID: 689559253
+    locked: 0
+  - name: Chars
+    uniqueID: 804631137
+    locked: 0
+  - name: UI
+    uniqueID: 87124657
     locked: 0

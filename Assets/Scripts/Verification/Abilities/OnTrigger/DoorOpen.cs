@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class DoorOpen : TriggerAbility
 {
-    SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
+    [SerializeField] protected Sprite openSprite;
+    [SerializeField] AudioClip deniedSound;
+    [SerializeField] protected AudioClip acceptedSound;
 
     // Start is called before the first frame update
     private void Start()
@@ -14,11 +17,22 @@ public class DoorOpen : TriggerAbility
 
     public override void OldFunction()
     {
-        spriteRenderer.color = Color.red;
+        AudioPoolManager.Instance.PlayAudioClip(deniedSound);
+        //spriteRenderer.color = Color.red;
     }
 
     public override void NewFunction()
     {
-        spriteRenderer.color = Color.green;
+        AudioPoolManager.Instance.PlayAudioClip(acceptedSound);
+        spriteRenderer.sprite = openSprite;
+        GameManager.Instance.NextLevel();
+        //gameObject.SetActive(false);
+        //spriteRenderer.color = Color.green;
     }
+
+    public override void OnTriggerStay2D(Collider2D other)
+    {
+
+    }
+
 }

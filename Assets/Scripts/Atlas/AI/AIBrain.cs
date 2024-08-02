@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AIBrain : MonoBehaviour
-{    
+{
     public List<AIState> BrainStates;
     public AIState CurrentBrainState;
     public float TimeInThisState;
@@ -34,7 +34,7 @@ public class AIBrain : MonoBehaviour
         foreach (AIState state in BrainStates)
         {
             state.SetBrain(this);
-        }        
+        }
     }
 
     private void Start()
@@ -52,6 +52,10 @@ public class AIBrain : MonoBehaviour
 
             if (_lastActionsUpdate >= ActionsFrequency)
             {
+                if (DialogueBoxController.Instance.dialogueActive)
+                {
+                    return;
+                }
                 CurrentBrainState.PerformActions();
                 _lastActionsUpdate = 0f;
             }
@@ -60,7 +64,7 @@ public class AIBrain : MonoBehaviour
                 CurrentBrainState.EvaluateTransitions();
                 _lastDecisionsUpdate = 0f;
             }
-        }        
+        }
     }
     public virtual void ChangeBrainState(string stateTransName)
     {
@@ -72,6 +76,6 @@ public class AIBrain : MonoBehaviour
 
     public void SetCharacter(Character dummyCharacter)
     {
-        Character = dummyCharacter;    
+        Character = dummyCharacter;
     }
 }

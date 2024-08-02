@@ -31,21 +31,45 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetBool("IsMoving", characterMovement.IsMoving());
     }
 
-    public void ChangeSkin()
+    public void ChangeSkin(RuntimeAnimatorController receivedController)
     {
-        animator.SetTrigger("Transform");
+        StartCoroutine(TurnIntoAlien(receivedController));
     }
 
     public void ChangeController(RuntimeAnimatorController runtimeAnimatorController)
     {
         animator.runtimeAnimatorController = runtimeAnimatorController;
-        AudioPoolManager.Instance.PlayAudioClip(turnSound);
     }
 
     public void ChangeBack()
     {
-        animator.runtimeAnimatorController = ogAnimatorController;
+        StartCoroutine(ToTrueForm());
+    }
+
+    public void GoIntoShell()
+    {
+        animator.SetTrigger("Shell"); // for shelllurking only
+    }
+
+    public void UnShell()
+    {
+        animator.SetTrigger("UnShell"); // for shelllurking only
+    }
+
+    private IEnumerator TurnIntoAlien(RuntimeAnimatorController newController)
+    {
         AudioPoolManager.Instance.PlayAudioClip(turnSound);
+        animator.SetTrigger("Transform");
+        yield return new WaitForSeconds(0.7f);
+        ChangeController(newController);
+    }
+
+    private IEnumerator ToTrueForm()
+    {
+        AudioPoolManager.Instance.PlayAudioClip(turnSound);
+        animator.SetTrigger("Transform");
+        yield return new WaitForSeconds(0.7f);
+        animator.runtimeAnimatorController = ogAnimatorController;
     }
 
 }

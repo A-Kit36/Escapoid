@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ac5bf8246801a4c854a297876323da, type: 3}
+  m_Name: 2ND_lvl_start
+  m_EditorClassIdentifier: 
+  dialogue:
+  - You know. I find it funny.
+  - ' I once heard that humanity was fearful that they may be the only living species
+    in the universe, while also being fearful of the existence of dominating alien
+    forces. '
+  - "In hindsight you\u2019d wonder if those fears were born from the natural instinct
+    of survival,"
+  - "or the desire to be that dominant force and, in turn, have others to subjugate
+    with that power. \r"
+  - "If it\u2019s the latter, then, to everyone else\u2019s dismay, their prayers
+    were answered.\r"

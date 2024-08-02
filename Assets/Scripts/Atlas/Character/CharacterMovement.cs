@@ -24,7 +24,7 @@ public class CharacterMovement : CharacterAbility
     {
         MoveCharacter(_commandDirection);
     }
-   
+
     protected override void AbilityEnd()
     {
     }
@@ -32,8 +32,8 @@ public class CharacterMovement : CharacterAbility
     {
         if (Character.CharacterMode == CharacterType.Player)
         {
-            ReadInput();            
-        }      
+            ReadInput();
+        }
     }
 
     private void ReadInput()
@@ -96,7 +96,7 @@ public class CharacterMovement : CharacterAbility
                     _movementCoroutine = StartCoroutine(MoveToPosition(targetPos));
                 }
             }
-        }        
+        }
     }
 
     private IEnumerator MoveToPosition(Vector3 target)
@@ -104,7 +104,7 @@ public class CharacterMovement : CharacterAbility
         _isMoving = true;
 
         while ((target - transform.position).sqrMagnitude > Mathf.Epsilon)
-        {            
+        {
             transform.position = Vector3.MoveTowards(transform.position, target, _moveSpeed * Time.deltaTime);
             yield return null;
         }
@@ -122,7 +122,7 @@ public class CharacterMovement : CharacterAbility
             faceDir = faceDir * flip;
         }
 
-        StartCoroutine(TurnCharacter(faceDir));        
+        StartCoroutine(TurnCharacter(faceDir));
 
     }
 
@@ -138,15 +138,15 @@ public class CharacterMovement : CharacterAbility
         {
             transform.localScale = faceDir;
         }
-        
+
         yield return new WaitForSeconds(_turnTime);
-        
+
         _isMoving = false;
 
     }
 
     protected override void UpdateCharacterAnimator()
     {
-        Character.UpdateAnimator("Walking", _isMoving);
+        Character.UpdateAnimator("IsMoving", _isMoving);
     }
 }

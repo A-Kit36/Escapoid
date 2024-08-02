@@ -6,13 +6,6 @@ using UnityEngine.Rendering.Universal;
 public class LightAbility : CharAbility
 {
     Light2D light2D;
-    private bool isActive = true;
-
-    public override bool IsActive
-    {
-        get { return isActive; }
-        set { isActive = value; }
-    }
 
     private void Awake()
     {
