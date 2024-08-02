@@ -16,6 +16,9 @@ public class UiManager : MonoBehaviour
     public List<GameObject> inGameMenuList;
     private Dictionary<string, GameObject> inGameMenuDict;
 
+    public TextMeshPro text;
+    
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -91,6 +94,7 @@ public class UiManager : MonoBehaviour
     {
         ActivateUI(uiDict["InGameMenu"], uiList);
         ActivateUI(inGameMenuDict["Dialogue1"], inGameMenuList);
+        text = GetObjectByKey("Dialogue1").GetComponentInChildren<TextMeshPro>();
     }
     public void DialogueDuo()
     {
@@ -101,6 +105,7 @@ public class UiManager : MonoBehaviour
     {
         ActivateUI(uiDict["InGameMenu"], uiList);
         ActivateUI(inGameMenuDict["StoryScreen"], inGameMenuList);
+        text = GetObjectByKey("StoryScreen").GetComponentInChildren<TextMeshPro>();
     }
     public void Status1()
     {
@@ -138,6 +143,14 @@ public class UiManager : MonoBehaviour
         foreach (GameObject item in uiToDeac)
         {
             item.SetActive(false);
+        }
+    }
+    //call GameObject in a dictionary
+    public GameObject GetObjectByKey(string key)
+    {
+        {
+            // Return the object associated with the key
+            return inGameMenuDict[key];
         }
     }
 }
