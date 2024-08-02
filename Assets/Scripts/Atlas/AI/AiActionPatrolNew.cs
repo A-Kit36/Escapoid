@@ -13,6 +13,7 @@ public class AiActionPatrolNew : AIAction
 
     [SerializeField] Pivots[] pivotPoints; // Array of points to patrol between
     [SerializeField] float patrolSpeed; // Speed of movement
+    [SerializeField] bool onStandBy;
     private int currentPointIndex = 0; // Current point in the array
     private Transform targetPoint; // Current target point
     private Rigidbody2D rb;
@@ -39,6 +40,11 @@ public class AiActionPatrolNew : AIAction
             currentPointIndex = (currentPointIndex + 1) % pivotPoints.Length;
             targetPoint = pivotPoints[currentPointIndex].pivotPoint;
         }
+
+        if (Mathf.Approximately(patrolSpeed, 0.0f))
+        {
+            animator.SetBool("IsMoving", false);
+        }
     }
 
     public override void OnEnterState()
@@ -46,7 +52,7 @@ public class AiActionPatrolNew : AIAction
         targetPoint = pivotPoints[currentPointIndex].pivotPoint;
         rb = GetComponentInParent<Rigidbody2D>();
         animator = GetComponentInParent<Animator>();
-        animator.SetBool("IsMoving", true);
+        animator.SetBool("IsMoving", !onStandBy);
         Debug.Log("Started patrol");
     }
 

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56ac5bf8246801a4c854a297876323da, type: 3}
-  m_Name: SoDark
+  m_Name: ISeeKeys
   m_EditorClassIdentifier: 
   dialogue:
-  - So dark in here...
-  - '*Insert more stuff*'
+  - I think I see the keys to our airship!
+  - I need to get them

@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     private int _livesLeft;
 
     [SerializeField] private CanvasGroup canvasBlack;
-    [SerializeField] float TimeToFade = 0.5f;
+    //[SerializeField] float TimeToFade = 0.5f;
     [SerializeField] AudioClip gameOverSound;
 
 

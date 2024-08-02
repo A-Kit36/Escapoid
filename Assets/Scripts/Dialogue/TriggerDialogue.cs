@@ -14,7 +14,7 @@ public class TriggerDialogue : MonoBehaviour
             Interact();
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    public virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
@@ -31,7 +31,7 @@ public class TriggerDialogue : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    public void OnTriggerExit2D(Collider2D other)
     {
         isTalking = false;
     }

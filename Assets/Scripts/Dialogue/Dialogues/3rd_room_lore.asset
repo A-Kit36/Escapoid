@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ac5bf8246801a4c854a297876323da, type: 3}
+  m_Name: 3rd_room_lore
+  m_EditorClassIdentifier: 
+  dialogue:
+  - "Still\u2026some may call those victims the lucky ones."
+  - "What awaits those who are taken to the thirteenth layer, Prison 13, have a whole
+    new level of torture headed their way\u2013torture that even death can\u2019t
+    save them from now. \r\n"
+  - 'There are tall tales spread around the facility. Talks of people who managed
+    to escape, who survived against all the odds, but there is no record of such
+    accounts. '
+  - 'Even the guards and researchers posted on that cold station of horrors know
+    they are not allowed to ever leave, so that its secrets may be kept.
+
+'

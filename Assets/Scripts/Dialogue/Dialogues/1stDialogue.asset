@@ -13,5 +13,16 @@ MonoBehaviour:
   m_Name: 1stDialogue
   m_EditorClassIdentifier: 
   dialogue:
-  - Insert starting story here
+  - "The thirteenth layer of hell. As if the extra layers still weren\u2019t enough
+    to describe that place. "
+  - "At the same time though, I don\u2019t think I could ever fathom anything on
+    the mortal coil that could even compare. "
+  - 'Orbital Prison 13. Asylums for the lost and hopeless back on Earth have more
+    decency and order than that place. '
+  - "It\u2019s a sanctuary for those who want to throw all morality away in favor
+    of drinking from the alluring pool of darkness and depravity that seems to be
+    all too natural for humanity. "
+  - "Rules don\u2019t apply, only the desires of those who have the strength to fulfill
+    said desires."
+  - ...
   - (press space to interact with objects)
