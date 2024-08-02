@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 
 public class UiManager : MonoBehaviour
 {
+    public static UiManager Instance { get; private set; }
     //management of UiGameObjects (each UI is put in a list in the editor)
     public List<GameObject> uiList;
     private Dictionary<string, GameObject> uiDict;
@@ -15,6 +16,18 @@ public class UiManager : MonoBehaviour
     public List<GameObject> inGameMenuList;
     private Dictionary<string, GameObject> inGameMenuDict;
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
     void Start()
     {
         //Create a collection with all the UI
@@ -46,32 +59,13 @@ public class UiManager : MonoBehaviour
         
     }
     
-    //StartMenu method
-    public void StartMenu()
-    {
-        ActivateUI(uiDict["StartMenu"], uiList);
-    }
-    
-    //Activate and Deactivate UI for only showing the wanted one at a time
-    public void ActivateUI(GameObject uiToAct, List<GameObject> uiToDeac)
-    {
-        DeactivateUI(uiToDeac);
-        uiToAct.SetActive(true);
-    }
-    public void DeactivateUI(List<GameObject> uiToDeac)
-    {
-        foreach (GameObject item in uiToDeac)
-        {
-            item.SetActive(false);
-        }
-    }
-    
     //all the methods called by the ingame buttons 
     #region //AllStartMenuButtons
     public void NewGame()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         ActivateUI(uiDict["MainHUD"], uiList);
+        GameManager.Instance.NextLevel();
     }
     public void Continue()
     {
@@ -119,7 +113,10 @@ public class UiManager : MonoBehaviour
         ActivateUI(inGameMenuDict["Status2"], inGameMenuList);
     }
     #endregion
-    
+    public void StartMenu()
+    {
+        ActivateUI(uiDict["StartMenu"], uiList);
+    }
     //Pause and GameOver UIs
     public void Pause()
     {
@@ -129,6 +126,18 @@ public class UiManager : MonoBehaviour
     {
         ActivateUI(uiDict["GameOver"], uiList);
     }
-
-
+    
+    //Activate and Deactivate UI for only showing the wanted one at a time
+    public void ActivateUI(GameObject uiToAct, List<GameObject> uiToDeac)
+    {
+        DeactivateUI(uiToDeac);
+        uiToAct.SetActive(true);
+    }
+    public void DeactivateUI(List<GameObject> uiToDeac)
+    {
+        foreach (GameObject item in uiToDeac)
+        {
+            item.SetActive(false);
+        }
+    }
 }
