@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("StartMenu");
     }
 
     internal void RestartLevel()
@@ -123,6 +123,11 @@ public class GameManager : MonoBehaviour
             return;
         }
         StartCoroutine(GameOver());
+    }
+
+    public void HandleGameEnd()
+    {
+        RestartGame();
     }
 }
 

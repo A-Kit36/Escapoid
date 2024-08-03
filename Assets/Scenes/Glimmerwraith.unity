@@ -851,12 +851,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 380647064}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d5dfeca3a75b3940b13895be40e941f, type: 3}
+  m_Script: {fileID: 11500000, guid: 169fb8ee1627155418fd974d6c98b3a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   doorOpen: {fileID: 21300000, guid: f2493fa4db459294f8be4dd6d89fca18, type: 3}
   closedDialogue: {fileID: 1829811560}
-  closedClip: {fileID: 8300000, guid: ffdfb66bc42b99a42a515ade7bcf5f52, type: 3}
+  closedClip: {fileID: 0}
 --- !u!1001 &389067122
 PrefabInstance:
   m_ObjectHideFlags: 0
