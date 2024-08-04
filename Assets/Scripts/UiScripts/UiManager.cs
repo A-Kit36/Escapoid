@@ -88,6 +88,11 @@ public class UiManager : MonoBehaviour
         ActivateUI(uiDict["InGameMenu"], uiList);
         ActivateUI(inGameMenuDict["Credits"], inGameMenuList);
     }
+    public void Quit()
+    {
+        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
+    }
     #endregion
     #region //AllInGameMenuUI 
     public void DialogueSolo()
@@ -126,6 +131,16 @@ public class UiManager : MonoBehaviour
     public void Pause()
     {
         ActivateUI(uiDict["Pause"], uiList);
+        Time.timeScale = 0;
+    }
+    public void Resume()
+    {
+        ActivateUI(uiDict["MainHUD"], uiList);
+        Time.timeScale = 1;
+    }
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void GameOver()
     {
