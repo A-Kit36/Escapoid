@@ -110,7 +110,6 @@ public class UiManager : MonoBehaviour
     {
         ActivateUI(uiDict["InGameMenu"], uiList);
         ActivateUI(inGameMenuDict["StoryScreen"], inGameMenuList);
-        text = GetObjectByKey("StoryScreen").GetComponentInChildren<TextMeshPro>();
     }
     public void Status1()
     {
