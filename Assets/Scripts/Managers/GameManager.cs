@@ -111,9 +111,9 @@ public class GameManager : MonoBehaviour
         SoundManager.Instance.StopMusic();
         //LevelManager.Instance.GameOverScreen();
         UiManager.Instance.GameOver();
+        LevelManager.Instance.GameOverLevel();
         AudioPoolManager.Instance.PlayAudioClip(gameOverSound);
         yield return new WaitForSeconds(2);
-        gameOverroutine = false;
         //RestartLevel();
         Debug.Log("Game Over!");
         /* GameStateChange(GameState.GameOver);
@@ -144,6 +144,7 @@ public class GameManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         Retries++;
+        gameOverroutine = false;
     }
 
     public void NextLevel()

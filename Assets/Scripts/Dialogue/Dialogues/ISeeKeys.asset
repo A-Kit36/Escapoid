@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - I think I see the keys to our airship!
-  - I need to get them
+  - I need to go get them. Otherwise, there's no point trying to escape in the first
+    place.
+  storyText: 0

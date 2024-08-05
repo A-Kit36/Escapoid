@@ -6,6 +6,8 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
     [SerializeField] private CanvasGroup canvasBlack;
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private AbilityController abilityController;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -18,8 +20,9 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void GameOverScreen()
+    public void GameOverLevel()
     {
-        canvasBlack.alpha = 1;
+        playerMovement.DisableMovenent();
+        abilityController.DisableAbilities();
     }
 }

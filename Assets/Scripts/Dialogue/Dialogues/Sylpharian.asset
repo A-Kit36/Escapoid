@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56ac5bf8246801a4c854a297876323da, type: 3}
-  m_Name: SaveUs
+  m_Name: Sylpharian
   m_EditorClassIdentifier: 
   dialogue:
-  - <color=red>Save us...
-  - <color=red>The humans here kept us captive.
-  - <color=red>Just press the button next to the door...
+  - (A sylpharian! One of my own kind!)
+  - '<color=green>They managed to get you too? '
+  - <color=green>I'd try to get out, but the guards seem to be on high alert.
+  - <color=green>I can't get close enough to touch one without them seeing me!
+  - <color=green>Maybe you'll have better luck?
+  - <color=green>I hope our planet is ok...
   storyText: 0

@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56ac5bf8246801a4c854a297876323da, type: 3}
-  m_Name: SaveUs
+  m_Name: ShellLurker
   m_EditorClassIdentifier: 
   dialogue:
-  - <color=red>Save us...
-  - <color=red>The humans here kept us captive.
-  - <color=red>Just press the button next to the door...
+  - A Shellurker.
+  - They even managed to get these hard headed guys? They're usually a slippery bunch,
+    but I suppose not slippery enough for them...
+  - Looks like he's badly wounded.
   storyText: 0

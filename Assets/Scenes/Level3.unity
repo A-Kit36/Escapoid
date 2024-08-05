@@ -21713,6 +21713,14 @@ PrefabInstance:
       propertyPath: canvasBlack
       value: 
       objectReference: {fileID: 1964673664}
+    - target: {fileID: 2052405004165713988, guid: 2113657609b85a54099e4052e3787141, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 389067123}
+    - target: {fileID: 2052405004165713988, guid: 2113657609b85a54099e4052e3787141, type: 3}
+      propertyPath: abilityController
+      value: 
+      objectReference: {fileID: 1470601290}
     - target: {fileID: 2479355463087206254, guid: 2113657609b85a54099e4052e3787141, type: 3}
       propertyPath: m_Name
       value: LevelManager

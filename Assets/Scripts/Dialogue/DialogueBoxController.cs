@@ -17,8 +17,6 @@ public class DialogueBoxController : MonoBehaviour
     [SerializeField] private AbilityController abilityController;
 
 
-
-
     private Queue<string> dialogue = new Queue<string>();
 
     public bool conversationEnded;
@@ -72,11 +70,27 @@ public class DialogueBoxController : MonoBehaviour
         if (!isTyping)
         {
             d = dialogue.Dequeue(); // that is going to assign the very top item in our queue to the d variable
-            typeDialogueCoroutine = StartCoroutine(TypeDialogueText(d));
+
+            if (dialogueText.storyText)
+            {
+                typeDialogueCoroutine = StartCoroutine(TypeStoryText(d));
+            }
+            else
+            {
+                typeDialogueCoroutine = StartCoroutine(TypeDialogueText(d));
+            }
         }
         else //conversation IS being typed out
         {
-            FinishParagraphEarly();
+            if (dialogueText.storyText)
+            {
+                FinishStoryParagraphEarly();
+            }
+            else
+            {
+                FinishDialogueParagraphEarly();
+            }
+
         }
 
         //update convo text
@@ -95,7 +109,14 @@ public class DialogueBoxController : MonoBehaviour
         if (!dialogueActive)
         {
             //dialogueBox.SetActive(true);
-            UiManager.Instance.StoryScreen();
+            if (dialogueText.storyText)
+            {
+                UiManager.Instance.StoryScreen();
+            }
+            else
+            {
+                UiManager.Instance.DialogueSolo();
+            }
             dialogueActive = true;
             playerMovement.DisableMovenent();
             abilityController.DisableAbilities();
@@ -135,6 +156,26 @@ public class DialogueBoxController : MonoBehaviour
     {
         isTyping = true;
         int maxVisibleChars = 0;
+        UiManager.Instance.dialogueText.text = d;
+        UiManager.Instance.dialogueText.maxVisibleCharacters = maxVisibleChars;
+        //NPCDialogueText.text = d;
+        //NPCDialogueText.maxVisibleCharacters = maxVisibleChars;
+        Debug.Log("Coroutine Dialogue started");
+
+        foreach (char c in d.ToCharArray())
+        {
+            maxVisibleChars++;
+            UiManager.Instance.dialogueText.maxVisibleCharacters = maxVisibleChars;
+            //NPCDialogueText.maxVisibleCharacters = maxVisibleChars;
+            yield return new WaitForSeconds(MAX_TYPE_TIME / typeSpeed);
+        }
+
+        isTyping = false;
+    }
+    private IEnumerator TypeStoryText(string d)
+    {
+        isTyping = true;
+        int maxVisibleChars = 0;
         UiManager.Instance.storyText.text = d;
         UiManager.Instance.storyText.maxVisibleCharacters = maxVisibleChars;
         //NPCDialogueText.text = d;
@@ -146,17 +187,24 @@ public class DialogueBoxController : MonoBehaviour
             maxVisibleChars++;
             UiManager.Instance.storyText.maxVisibleCharacters = maxVisibleChars;
             //NPCDialogueText.maxVisibleCharacters = maxVisibleChars;
-            Debug.Log("Character added");
             yield return new WaitForSeconds(MAX_TYPE_TIME / typeSpeed);
         }
 
         isTyping = false;
     }
 
-    private void FinishParagraphEarly()
+    private void FinishStoryParagraphEarly()
     {
         StopCoroutine(typeDialogueCoroutine);
         UiManager.Instance.storyText.maxVisibleCharacters = d.Length;
+        //NPCDialogueText.maxVisibleCharacters = d.Length;
+        isTyping = false;
+    }
+
+    private void FinishDialogueParagraphEarly()
+    {
+        StopCoroutine(typeDialogueCoroutine);
+        UiManager.Instance.dialogueText.maxVisibleCharacters = d.Length;
         //NPCDialogueText.maxVisibleCharacters = d.Length;
         isTyping = false;
     }
