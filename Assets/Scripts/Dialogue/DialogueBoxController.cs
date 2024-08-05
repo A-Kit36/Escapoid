@@ -135,7 +135,7 @@ public class DialogueBoxController : MonoBehaviour
         {
             maxVisibleChars++;
             NPCDialogueText.maxVisibleCharacters = maxVisibleChars;
-            Debug.Log("Character added");
+            AudioPoolManager.Instance.PlayAudioClip(voice);
             yield return new WaitForSeconds(MAX_TYPE_TIME / typeSpeed);
         }
 

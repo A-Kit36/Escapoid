@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56ac5bf8246801a4c854a297876323da, type: 3}
-  m_Name: 2ND_lvl_start
+  m_Name: 2ndStoryP1
   m_EditorClassIdentifier: 
   dialogue:
   - You know. I find it funny.
@@ -23,3 +23,4 @@ MonoBehaviour:
     with that power. \r"
   - "If it\u2019s the latter, then, to everyone else\u2019s dismay, their prayers
     were answered.\r"
+  storyText: 1

@@ -4204,6 +4204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AwarenessLevel: 0
+  retries: 0
   _maxLives: 0
   _livesLeft: 0
   canvasBlack: {fileID: 1964673664}
@@ -19703,6 +19704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1778997474}
   - component: {fileID: 1778997476}
+  - component: {fileID: 1778997477}
   - component: {fileID: 1778997475}
   m_Layer: 0
   m_Name: Continue_Lore_Dialogue
@@ -19784,6 +19786,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.533368, y: 0.9099128}
   m_EdgeRadius: 0
+--- !u!114 &1778997477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778997473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 605688d02850b3146971c12725e402bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueNumber: 3
 --- !u!1001 &1779486652
 PrefabInstance:
   m_ObjectHideFlags: 0

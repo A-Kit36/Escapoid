@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56ac5bf8246801a4c854a297876323da, type: 3}
-  m_Name: 2nd_continue_lore
+  m_Name: 2ndStoryP2
   m_EditorClassIdentifier: 
   dialogue:
   - 'Death is a close friend of humanity.
@@ -26,3 +26,4 @@ MonoBehaviour:
     suffering that the reaper shall one day reap.
 
 '
+  storyText: 1

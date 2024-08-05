@@ -12,8 +12,18 @@ public class GameManager : MonoBehaviour
     public delegate void GameStateChanged(GameState GameState);
     public static event GameStateChanged GameStateChange;
     private bool isPaused;
+    public bool FirstStoryRead { get; private set; }
+    public bool SecondStoryP1Read { get; private set; }
+    public bool SecondStoryP2Read { get; private set; }
+    public bool ThirdStoryRead { get; private set; }
 
     public bool IsGamePaused { get; private set; }
+    [SerializeField] int retries;
+    public int Retries
+    {
+        get { return retries; }
+        set { retries = value; }
+    }
 
     private bool gameOverroutine;
 
@@ -42,6 +52,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Retries = 0;
         AwarenessLevel = 0f;
         _livesLeft = 3;
     }
@@ -130,10 +141,12 @@ public class GameManager : MonoBehaviour
     internal void RestartLevel()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        Retries++;
     }
 
     public void NextLevel()
     {
+        Retries = 0;
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -149,6 +162,25 @@ public class GameManager : MonoBehaviour
     public void HandleGameEnd()
     {
         RestartGame();
+    }
+
+    public void ReadLog(DialogueNumber dialogueNumber)
+    {
+        switch (dialogueNumber)
+        {
+            case DialogueNumber.FirstStory:
+                FirstStoryRead = true;
+                break;
+            case DialogueNumber.SecondStoryP1:
+                SecondStoryP1Read = true;
+                break;
+            case DialogueNumber.SecondStoryP2:
+                SecondStoryP2Read = true;
+                break;
+            case DialogueNumber.ThirdStory:
+                ThirdStoryRead = true;
+                break;
+        }
     }
 }
 
