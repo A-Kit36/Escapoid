@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
             yield return null;
         } */
         SoundManager.Instance.StopMusic();
-        canvasBlack.alpha = 1;
+        LevelManager.Instance.GameOverScreen();
         AudioPoolManager.Instance.PlayAudioClip(gameOverSound);
         yield return new WaitForSeconds(2);
         gameOverroutine = false;

@@ -70,6 +70,7 @@ public class GameEndScene : MonoBehaviour
         yield return new WaitForSeconds(3);
         titleCard.SetActive(true);
         yield return new WaitForSeconds(3);
+        SoundManager.Instance.StopMusic();
         GameManager.Instance.HandleGameEnd();
     }
 }
