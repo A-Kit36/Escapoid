@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public delegate void GameStateChanged(GameState GameState);
     public static event GameStateChanged GameStateChange;
+    private bool isPaused;
 
     public bool IsGamePaused { get; private set; }
 
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -43,6 +46,24 @@ public class GameManager : MonoBehaviour
         _livesLeft = 3;
     }
 
+    private void Update()
+    {
+        if (InputManagerOption.Instance.GetEscapeInput())
+        {
+            if (!isPaused)
+            {
+                isPaused = true;
+                InputManagerOption.Instance.DisableAllButtons();
+                UiManager.Instance.Pause();
+            }
+            else
+            {
+                isPaused = false;
+                InputManagerOption.Instance.EnableAllButtons();
+                UiManager.Instance.Resume();
+            }
+        }
+    }
     public void RaiseAwareness()
     {
         AwarenessLevel += 1f;

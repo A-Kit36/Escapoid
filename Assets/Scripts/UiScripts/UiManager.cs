@@ -17,7 +17,7 @@ public class UiManager : MonoBehaviour
     private Dictionary<string, GameObject> inGameMenuDict;
 
     public TextMeshPro text;
-    
+
 
     private void Awake()
     {
@@ -40,7 +40,7 @@ public class UiManager : MonoBehaviour
             {"MainHUD", uiList[1]},
             {"Pause", uiList[2]},
             {"GameOver", uiList[3]},
-            {"InGameMenu", uiList[4]}, 
+            {"InGameMenu", uiList[4]},
         };
         //Create a collection with all the InGameUI
         inGameMenuDict = new Dictionary<string, GameObject>
@@ -49,9 +49,9 @@ public class UiManager : MonoBehaviour
             {"Status2", inGameMenuList[1]},
             {"StoryScreen", inGameMenuList[2]},
             {"Dialogue1", inGameMenuList[3]},
-            {"Dialogue2", inGameMenuList[4]}, 
-            {"Options", inGameMenuList[5]}, 
-            {"Credits", inGameMenuList[6]}, 
+            {"Dialogue2", inGameMenuList[4]},
+            {"Options", inGameMenuList[5]},
+            {"Credits", inGameMenuList[6]},
         };
         //Show the Main Menu UI
         StartMenu();
@@ -59,9 +59,9 @@ public class UiManager : MonoBehaviour
 
     void Update()
     {
-        
+
     }
-    
+
     //all the methods called by the ingame buttons 
     #region //AllStartMenuButtons
     public void NewGame()
@@ -72,11 +72,11 @@ public class UiManager : MonoBehaviour
     }
     public void Continue()
     {
-        
+
     }
     public void LoadSave()
     {
-        
+
     }
     public void Options()
     {
@@ -110,7 +110,7 @@ public class UiManager : MonoBehaviour
     {
         ActivateUI(uiDict["InGameMenu"], uiList);
         ActivateUI(inGameMenuDict["StoryScreen"], inGameMenuList);
-        text = GetObjectByKey("StoryScreen").GetComponentInChildren<TextMeshPro>();
+        //text = GetObjectByKey("StoryScreen").GetComponentInChildren<TextMeshPro>();
     }
     public void Status1()
     {
@@ -146,7 +146,7 @@ public class UiManager : MonoBehaviour
     {
         ActivateUI(uiDict["GameOver"], uiList);
     }
-    
+
     //Activate and Deactivate UI for only showing the wanted one at a time
     public void ActivateUI(GameObject uiToAct, List<GameObject> uiToDeac)
     {

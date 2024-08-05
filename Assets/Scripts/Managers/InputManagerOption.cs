@@ -74,6 +74,11 @@ public class InputManagerOption : MonoBehaviour
         return Input.GetButtonDown("ExtraAbility"); // R button
     }
 
+    public bool GetEscapeInput()
+    {
+        return Input.GetButtonDown("Pause");
+    }
+
     public void DisableAllButtons()
     {
         buttonsDisabled = true;
