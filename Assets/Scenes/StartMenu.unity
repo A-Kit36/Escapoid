@@ -134,9 +134,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI2.0
       objectReference: {fileID: 0}
+    - target: {fileID: 2867174618755132184, guid: 136e516081978284d9a4d0706ab0daf2, type: 3}
+      propertyPath: m_Name
+      value: StoryScreenText
+      objectReference: {fileID: 0}
     - target: {fileID: 3304861034815571221, guid: 136e516081978284d9a4d0706ab0daf2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6039275647310653841, guid: 136e516081978284d9a4d0706ab0daf2, type: 3}
       propertyPath: m_Pivot.x
@@ -216,6 +220,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6039275647310653841, guid: 136e516081978284d9a4d0706ab0daf2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7461034752708795407, guid: 136e516081978284d9a4d0706ab0daf2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088467056334885561, guid: 136e516081978284d9a4d0706ab0daf2, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

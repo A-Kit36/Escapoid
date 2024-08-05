@@ -16,23 +16,20 @@ public class UiManager : MonoBehaviour
     public List<GameObject> inGameMenuList;
     private Dictionary<string, GameObject> inGameMenuDict;
 
-    public TextMeshPro text;
+    public TextMeshProUGUI storyText;
     
 
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-    }
-    void Start()
-    {
         //Create a collection with all the UI
         uiDict = new Dictionary<string, GameObject>
         {
@@ -50,11 +47,29 @@ public class UiManager : MonoBehaviour
             {"StoryScreen", inGameMenuList[2]},
             {"Dialogue1", inGameMenuList[3]},
             {"Dialogue2", inGameMenuList[4]}, 
-            {"Options", inGameMenuList[5]}, 
-            {"Credits", inGameMenuList[6]}, 
         };
         //Show the Main Menu UI
         StartMenu();
+    }
+    private void DictFull()
+    {
+        uiDict = new Dictionary<string, GameObject>
+        {
+            {"StartMenu", uiList[0]},
+            {"MainHUD", uiList[1]},
+            {"Pause", uiList[2]},
+            {"GameOver", uiList[3]},
+            {"InGameMenu", uiList[4]}, 
+        };
+        //Create a collection with all the InGameUI
+        inGameMenuDict = new Dictionary<string, GameObject>
+        {
+            {"Status1", inGameMenuList[0]},
+            {"Status2", inGameMenuList[1]},
+            {"StoryScreen", inGameMenuList[2]},
+            {"Dialogue1", inGameMenuList[3]},
+            {"Dialogue2", inGameMenuList[4]}, 
+        };
     }
 
     void Update()
@@ -99,7 +114,6 @@ public class UiManager : MonoBehaviour
     {
         ActivateUI(uiDict["InGameMenu"], uiList);
         ActivateUI(inGameMenuDict["Dialogue1"], inGameMenuList);
-        text = GetObjectByKey("Dialogue1").GetComponentInChildren<TextMeshPro>();
     }
     public void DialogueDuo()
     {
@@ -108,6 +122,7 @@ public class UiManager : MonoBehaviour
     }
     public void StoryScreen()
     {
+        DictFull();
         ActivateUI(uiDict["InGameMenu"], uiList);
         ActivateUI(inGameMenuDict["StoryScreen"], inGameMenuList);
     }
