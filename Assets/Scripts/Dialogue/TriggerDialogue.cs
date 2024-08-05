@@ -27,6 +27,7 @@ public class TriggerDialogue : MonoBehaviour
                 Talk(dialogueText);
                 isTalking = true;
                 hasRun = true;
+                
             }
         }
     }
@@ -39,6 +40,7 @@ public class TriggerDialogue : MonoBehaviour
     {
         //start convo
         DialogueBoxController.Instance.DisplayNextLine(dialogueText);
+        
     }
 
     public void Interact()

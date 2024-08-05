@@ -3953,8 +3953,6 @@ MonoBehaviour:
   - {fileID: 7461034752708795407}
   - {fileID: 5224560376166221182}
   - {fileID: 2342387829925387184}
-  - {fileID: 0}
-  - {fileID: 0}
   text: {fileID: 0}
 --- !u!1 &2721810635179831435
 GameObject:
@@ -4043,7 +4041,7 @@ GameObject:
   - component: {fileID: 7193793471424460997}
   - component: {fileID: 5094637056310935028}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: StoryScreenText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4405,7 +4403,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1793359440657925549
 RectTransform:
   m_ObjectHideFlags: 0

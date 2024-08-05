@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.Mathematics;
 
 
 public class DialogueBoxController : MonoBehaviour
@@ -14,6 +15,9 @@ public class DialogueBoxController : MonoBehaviour
     [SerializeField] private AudioClip voice;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private AbilityController abilityController;
+    
+    
+    
 
     private Queue<string> dialogue = new Queue<string>();
 
@@ -40,7 +44,10 @@ public class DialogueBoxController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        dialogueBox = GameObject.Find("InGameMenus");
+        NPCDialogueText = GameObject.Find("StoryScreenText").GetComponent<TextMeshProUGUI>();
     }
+    
     public void DisplayNextLine(DialogueAsset dialogueText)
     {
         // if there is nothing in the queue
@@ -89,6 +96,7 @@ public class DialogueBoxController : MonoBehaviour
         if (!dialogueBox.activeSelf)
         {
             dialogueBox.SetActive(true);
+            UiManager.Instance.StoryScreen();
             dialogueActive = true;
             playerMovement.DisableMovenent();
             abilityController.DisableAbilities();
