@@ -109,11 +109,12 @@ public class GameManager : MonoBehaviour
             yield return null;
         } */
         SoundManager.Instance.StopMusic();
-        LevelManager.Instance.GameOverScreen();
+        //LevelManager.Instance.GameOverScreen();
+        UiManager.Instance.GameOver();
         AudioPoolManager.Instance.PlayAudioClip(gameOverSound);
         yield return new WaitForSeconds(2);
         gameOverroutine = false;
-        RestartLevel();
+        //RestartLevel();
         Debug.Log("Game Over!");
         /* GameStateChange(GameState.GameOver);
         //add a reload screen to beginning of game */
@@ -136,6 +137,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("StartMenu");
+        UiManager.Instance.StartMenu();
     }
 
     internal void RestartLevel()

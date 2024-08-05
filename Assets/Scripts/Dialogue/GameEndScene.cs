@@ -64,6 +64,7 @@ public class GameEndScene : MonoBehaviour
     private IEnumerator GameEnd()
     {
         coroutineStarted = true;
+        UiManager.Instance.DeactivateAllUI();
         playerMovement.DisableMovenent();
         abilityController.DisableAbilities();
         homePlanet.SetActive(true);

@@ -15,9 +15,9 @@ public class DialogueBoxController : MonoBehaviour
     [SerializeField] private AudioClip voice;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private AbilityController abilityController;
-    
-    
-    
+
+
+
 
     private Queue<string> dialogue = new Queue<string>();
 
@@ -44,9 +44,9 @@ public class DialogueBoxController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-          
+
     }
-    
+
     public void DisplayNextLine(DialogueAsset dialogueText)
     {
         // if there is nothing in the queue
@@ -124,6 +124,7 @@ public class DialogueBoxController : MonoBehaviour
         //deactivate gameObject
         if (dialogueActive)
         {
+            UiManager.Instance.MainHUD();
             //dialogueBox.SetActive(false);
             dialogueActive = false;
             //dialogueFinished = true; // this bool is only for BrokenLightReaction, we need to keep it as true otherwise it gets started up again
@@ -134,6 +135,8 @@ public class DialogueBoxController : MonoBehaviour
     {
         isTyping = true;
         int maxVisibleChars = 0;
+        UiManager.Instance.storyText.text = d;
+        UiManager.Instance.storyText.maxVisibleCharacters = maxVisibleChars;
         //NPCDialogueText.text = d;
         //NPCDialogueText.maxVisibleCharacters = maxVisibleChars;
         Debug.Log("Coroutine Dialogue started");
@@ -141,6 +144,7 @@ public class DialogueBoxController : MonoBehaviour
         foreach (char c in d.ToCharArray())
         {
             maxVisibleChars++;
+            UiManager.Instance.storyText.maxVisibleCharacters = maxVisibleChars;
             //NPCDialogueText.maxVisibleCharacters = maxVisibleChars;
             Debug.Log("Character added");
             yield return new WaitForSeconds(MAX_TYPE_TIME / typeSpeed);
@@ -152,6 +156,7 @@ public class DialogueBoxController : MonoBehaviour
     private void FinishParagraphEarly()
     {
         StopCoroutine(typeDialogueCoroutine);
+        UiManager.Instance.storyText.maxVisibleCharacters = d.Length;
         //NPCDialogueText.maxVisibleCharacters = d.Length;
         isTyping = false;
     }
