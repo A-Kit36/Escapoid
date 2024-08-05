@@ -16,7 +16,7 @@ public class UiManager : MonoBehaviour
     public List<GameObject> inGameMenuList;
     private Dictionary<string, GameObject> inGameMenuDict;
 
-    public TextMeshPro text;
+    public TextMeshProUGUI storyText;
     
 
     private void Awake()
@@ -114,7 +114,6 @@ public class UiManager : MonoBehaviour
     {
         ActivateUI(uiDict["InGameMenu"], uiList);
         ActivateUI(inGameMenuDict["Dialogue1"], inGameMenuList);
-        text = GetObjectByKey("Dialogue1").GetComponentInChildren<TextMeshPro>();
     }
     public void DialogueDuo()
     {

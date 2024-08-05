@@ -8,8 +8,8 @@ using Unity.Mathematics;
 public class DialogueBoxController : MonoBehaviour
 {
     public static DialogueBoxController Instance { get; private set; }
-    [SerializeField] private TextMeshProUGUI NPCDialogueText;
-    [SerializeField] private GameObject dialogueBox;
+    //[SerializeField] private TextMeshProUGUI NPCDialogueText;
+    //[SerializeField] private GameObject dialogueBox;
     [SerializeField] private float typeSpeed = 20;
     [SerializeField] private const float MAX_TYPE_TIME = 0.1f;
     [SerializeField] private AudioClip voice;
@@ -44,8 +44,7 @@ public class DialogueBoxController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        dialogueBox = GameObject.Find("InGameMenus");
-        NPCDialogueText = GameObject.Find("StoryScreenText").GetComponent<TextMeshProUGUI>();
+          
     }
     
     public void DisplayNextLine(DialogueAsset dialogueText)
@@ -93,9 +92,9 @@ public class DialogueBoxController : MonoBehaviour
     private void StartConvo(DialogueAsset dialogueText)
     {
         //activate gameObject (the dialogue box)
-        if (!dialogueBox.activeSelf)
+        if (!dialogueActive)
         {
-            dialogueBox.SetActive(true);
+            //dialogueBox.SetActive(true);
             UiManager.Instance.StoryScreen();
             dialogueActive = true;
             playerMovement.DisableMovenent();
@@ -123,9 +122,9 @@ public class DialogueBoxController : MonoBehaviour
         //playerController.MoveAction.Enable(); //enabling movement
 
         //deactivate gameObject
-        if (dialogueBox.activeSelf)
+        if (dialogueActive)
         {
-            dialogueBox.SetActive(false);
+            //dialogueBox.SetActive(false);
             dialogueActive = false;
             //dialogueFinished = true; // this bool is only for BrokenLightReaction, we need to keep it as true otherwise it gets started up again
         }
@@ -135,14 +134,14 @@ public class DialogueBoxController : MonoBehaviour
     {
         isTyping = true;
         int maxVisibleChars = 0;
-        NPCDialogueText.text = d;
-        NPCDialogueText.maxVisibleCharacters = maxVisibleChars;
+        //NPCDialogueText.text = d;
+        //NPCDialogueText.maxVisibleCharacters = maxVisibleChars;
         Debug.Log("Coroutine Dialogue started");
 
         foreach (char c in d.ToCharArray())
         {
             maxVisibleChars++;
-            NPCDialogueText.maxVisibleCharacters = maxVisibleChars;
+            //NPCDialogueText.maxVisibleCharacters = maxVisibleChars;
             Debug.Log("Character added");
             yield return new WaitForSeconds(MAX_TYPE_TIME / typeSpeed);
         }
@@ -153,7 +152,7 @@ public class DialogueBoxController : MonoBehaviour
     private void FinishParagraphEarly()
     {
         StopCoroutine(typeDialogueCoroutine);
-        NPCDialogueText.maxVisibleCharacters = d.Length;
+        //NPCDialogueText.maxVisibleCharacters = d.Length;
         isTyping = false;
     }
 }
