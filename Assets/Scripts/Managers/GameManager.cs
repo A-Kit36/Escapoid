@@ -137,6 +137,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("StartMenu");
+        SoundManager.Instance.StopMusic();
         UiManager.Instance.StartMenu();
     }
 

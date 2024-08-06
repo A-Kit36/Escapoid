@@ -70,9 +70,9 @@ public class GameEndScene : MonoBehaviour
         homePlanet.SetActive(true);
         yield return new WaitForSeconds(3);
         titleCard.SetActive(true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         UiManager.Instance.Credits();
-        SoundManager.Instance.StopMusic();
+        //SoundManager.Instance.StopMusic();
         //GameManager.Instance.HandleGameEnd();
     }
 }
