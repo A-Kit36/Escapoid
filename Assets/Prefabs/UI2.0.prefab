@@ -1855,8 +1855,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -943.9686, y: -626.1178}
-  m_SizeDelta: {x: 1720, y: 1030}
+  m_AnchoredPosition: {x: 11.860992, y: -348.59277}
+  m_SizeDelta: {x: 377100.3, y: 110021.64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8180915028502460319
 CanvasRenderer:
@@ -3838,7 +3838,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3439469495292637811}
         m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
-        m_MethodName: StartMenu
+        m_MethodName: StartMenuButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4015,6 +4015,7 @@ MonoBehaviour:
   - {fileID: 5600948007189076344}
   - {fileID: 1164803217456332696}
   - {fileID: 9088467056334885561}
+  - {fileID: 4064481902393132315}
   inGameMenuList:
   - {fileID: 2683120437033496150}
   - {fileID: 872593001074129656}
@@ -5844,7 +5845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3118523408061136758
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6078,7 +6079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7518894310144651691
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7427,12 +7428,51 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Programmers : Atlas, Gps, Munchkin
+  m_text: '#Producer/Lead Game Design: Fraser
 
-    Designers : Somanynames, Lucious,
-    Wesly, DadBod, Tyrant, Azrael
 
-    Manager : Fraser '
+
+    #Lead Programmer: Atlas
+
+
+
+    #Programmers:
+    Munchkins | GPS
+
+
+
+    #Level Design: Munchkins | LuciousTPK | Wesly
+
+
+
+    #Narrative
+    Lead/Lead Writer: LuciousTPK
+
+
+
+    #Writer: Munchkins
+
+
+
+    #Concept Artist:
+    Azrael Pigmon
+
+
+
+    #Lead Artist: Dadbod Actionfigure
+
+
+
+    #Lead Composer:
+    Tyrant
+
+
+
+    #UI/UX Design: Wesly
+
+
+
+    #Sound Design/SFX: Somanynames'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f9cd776cf27b00c45843fd1daee6633e, type: 2}
   m_sharedMaterial: {fileID: -636163926206368092, guid: f9cd776cf27b00c45843fd1daee6633e, type: 2}
@@ -9038,7 +9078,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6424554932004262988
 RectTransform:
   m_ObjectHideFlags: 0

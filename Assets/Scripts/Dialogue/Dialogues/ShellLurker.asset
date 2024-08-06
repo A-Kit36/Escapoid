@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - A Shellurker.
-  - They even managed to get these hard headed guys? They're usually a slippery bunch,
-    but I suppose not slippery enough for them...
+  - They even managed to get these hard headed guys?
+  - They're usually a slippery bunch, but I suppose not slippery enough for them...
   - Looks like he's badly wounded.
   storyText: 0

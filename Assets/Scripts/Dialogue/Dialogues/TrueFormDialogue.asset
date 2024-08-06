@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: TrueFormDialogue
   m_EditorClassIdentifier: 
   dialogue:
-  - Only a true (alien name) can hold the keys
-  - If another species touches it, it will deactivate
+  - I can't take them in this form.
+  - There's a security measure.
+  - Only a true Sylpharian can hold the keys to our airship.
+  - If another species touches them, they will deactivate.
+  - I wonder how they got them here unscathed?
+  storyText: 0

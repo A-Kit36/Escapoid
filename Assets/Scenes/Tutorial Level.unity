@@ -654,9 +654,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1164803217456332696, guid: 136e516081978284d9a4d0706ab0daf2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2697334906863283733, guid: 136e516081978284d9a4d0706ab0daf2, type: 3}
       propertyPath: m_Name
       value: UI2.0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064481902393132315, guid: 136e516081978284d9a4d0706ab0daf2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6039275647310653841, guid: 136e516081978284d9a4d0706ab0daf2, type: 3}
       propertyPath: m_Pivot.x
@@ -737,6 +745,10 @@ PrefabInstance:
     - target: {fileID: 6039275647310653841, guid: 136e516081978284d9a4d0706ab0daf2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088467056334885561, guid: 136e516081978284d9a4d0706ab0daf2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8145,17 +8157,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2539242849055828434, guid: e96eab6ff62eae543b432ef954d9f7ab, type: 3}
-      propertyPath: dialogueBox
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2539242849055828434, guid: e96eab6ff62eae543b432ef954d9f7ab, type: 3}
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 1173527639}
-    - target: {fileID: 2539242849055828434, guid: e96eab6ff62eae543b432ef954d9f7ab, type: 3}
-      propertyPath: NPCDialogueText
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2539242849055828434, guid: e96eab6ff62eae543b432ef954d9f7ab, type: 3}
       propertyPath: abilityController
       value: 
@@ -8203,7 +8207,7 @@ MonoBehaviour:
   _maxLives: 0
   _livesLeft: 0
   canvasBlack: {fileID: 1015680254}
-  gameOverSound: {fileID: 8300000, guid: f2f5415b67d477440a75c6b294ed82e2, type: 3}
+  gameOverSound: {fileID: 8300000, guid: 32125304a1d99dd49be1931504918e03, type: 3}
 --- !u!4 &1215144447
 Transform:
   m_ObjectHideFlags: 0
@@ -8262,8 +8266,9 @@ GameObject:
   - component: {fileID: 1266003180}
   - component: {fileID: 1266003183}
   - component: {fileID: 1266003182}
+  - component: {fileID: 1266003184}
   m_Layer: 0
-  m_Name: alien-and-prototypes_70
+  m_Name: Electroquill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8394,6 +8399,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 11400000, guid: 5709d881aeb4e624880e50bec628555d, type: 2}
+--- !u!95 &1266003184
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266003179}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a74ad5394e5298341b2d8b76c130a037, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1378995637
 GameObject:
   m_ObjectHideFlags: 0
@@ -9253,6 +9279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1799862176}
+  - component: {fileID: 1799862177}
   m_Layer: 0
   m_Name: ---NPCs---
   m_TagString: Untagged
@@ -9280,6 +9307,58 @@ Transform:
   - {fileID: 465123794}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1799862177
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799862175}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1827235744
 GameObject:
   m_ObjectHideFlags: 0

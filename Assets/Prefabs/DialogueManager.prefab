@@ -44,10 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3adcbfe39cc1e5a498a33b6cad532730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPCDialogueText: {fileID: 0}
-  dialogueBox: {fileID: 0}
   typeSpeed: 1.5
   voice: {fileID: 8300000, guid: 4212ba07b5ed4e34581f328d4d94eb65, type: 3}
+  typing: {fileID: 8300000, guid: f9b9554ad3e615640aca276f3f403049, type: 3}
   playerMovement: {fileID: 0}
   abilityController: {fileID: 0}
   conversationEnded: 0

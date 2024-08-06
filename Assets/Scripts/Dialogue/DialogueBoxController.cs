@@ -13,6 +13,7 @@ public class DialogueBoxController : MonoBehaviour
     [SerializeField] private float typeSpeed = 20;
     [SerializeField] private const float MAX_TYPE_TIME = 0.1f;
     [SerializeField] private AudioClip voice;
+    [SerializeField] private AudioClip typing;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private AbilityController abilityController;
 
@@ -53,7 +54,6 @@ public class DialogueBoxController : MonoBehaviour
             if (!conversationEnded)
             {
                 //start a conversation
-                AudioPoolManager.Instance.PlayAudioClip(voice);
                 StartConvo(dialogueText);
             }
 
@@ -115,6 +115,7 @@ public class DialogueBoxController : MonoBehaviour
             }
             else
             {
+                AudioPoolManager.Instance.PlayAudioClip(voice);
                 UiManager.Instance.DialogueSolo();
             }
             dialogueActive = true;
@@ -186,6 +187,7 @@ public class DialogueBoxController : MonoBehaviour
         {
             maxVisibleChars++;
             UiManager.Instance.storyText.maxVisibleCharacters = maxVisibleChars;
+            AudioPoolManager.Instance.PlayAudioClip(typing);
             //NPCDialogueText.maxVisibleCharacters = maxVisibleChars;
             yield return new WaitForSeconds(MAX_TYPE_TIME / typeSpeed);
         }

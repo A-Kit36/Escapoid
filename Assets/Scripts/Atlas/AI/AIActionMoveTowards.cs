@@ -6,6 +6,7 @@ public class AIActionMoveTowards : AIAction
 {
     [SerializeField] float chaseSpeed;
     [SerializeField] float catchDistance;
+    [SerializeField] AudioClip caughtSound;
     private float distance;
     private Rigidbody2D rb;
     private Animator animator;
@@ -68,6 +69,7 @@ public class AIActionMoveTowards : AIAction
         } */
         rb = GetComponentInParent<Rigidbody2D>();
         animator = GetComponentInParent<Animator>();
+        AudioPoolManager.Instance.PlayAudioClip(caughtSound);
         isMoving = true;
         animator.SetBool("IsMoving", true);
     }

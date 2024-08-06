@@ -40,6 +40,7 @@ public class UiManager : MonoBehaviour
             {"Pause", uiList[2]},
             {"GameOver", uiList[3]},
             {"InGameMenu", uiList[4]},
+            {"Credits", uiList[5]},
         };
         //Create a collection with all the InGameUI
         inGameMenuDict = new Dictionary<string, GameObject>
@@ -62,6 +63,7 @@ public class UiManager : MonoBehaviour
             {"Pause", uiList[2]},
             {"GameOver", uiList[3]},
             {"InGameMenu", uiList[4]},
+            {"Credits", uiList[5]},
         };
         //Create a collection with all the InGameUI
         inGameMenuDict = new Dictionary<string, GameObject>
@@ -103,7 +105,7 @@ public class UiManager : MonoBehaviour
     public void Credits()
     {
         ActivateUI(uiDict["InGameMenu"], uiList);
-        ActivateUI(inGameMenuDict["Credits"], inGameMenuList);
+        ActivateUI(uiDict["Credits"], inGameMenuList);
     }
     public void Quit()
     {
@@ -153,6 +155,10 @@ public class UiManager : MonoBehaviour
     }
 
     #endregion
+    public void StartMenuButton()
+    {
+        GameManager.Instance.RestartGame();
+    }
     public void StartMenu()
     {
         ActivateUI(uiDict["StartMenu"], uiList);

@@ -57,10 +57,13 @@ public class OpenAlienDoor : InteractAbility
         InputManagerOption.Instance.DisableAllButtons();
         AudioPoolManager.Instance.PlayAudioClip(openDoorClip);
         doorRenderer.sprite = openDoorsprite;
-        NPCDialogueText.text = "Thank you.";
-        dialogueBox.SetActive(true);
-        yield return new WaitForSeconds(1.5f);
-        dialogueBox.SetActive(false);
+        UiManager.Instance.storyText.text = "<color=red>Thank you.";
+        UiManager.Instance.StoryScreen();
+        //NPCDialogueText.text = "Thank you.";
+        //dialogueBox.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        //dialogueBox.SetActive(false);
+        UiManager.Instance.MainHUD();
         Vector2 startPosition = movingAlien.transform.position;
         Vector2 endPosition = startPosition + Vector2.down * 2;
         while (Vector2.Distance(movingAlien.transform.position, endPosition) > 0.05f) // Small threshold to ensure reaching the end

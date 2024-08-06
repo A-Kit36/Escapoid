@@ -71,7 +71,8 @@ public class GameEndScene : MonoBehaviour
         yield return new WaitForSeconds(3);
         titleCard.SetActive(true);
         yield return new WaitForSeconds(3);
+        UiManager.Instance.Credits();
         SoundManager.Instance.StopMusic();
-        GameManager.Instance.HandleGameEnd();
+        //GameManager.Instance.HandleGameEnd();
     }
 }

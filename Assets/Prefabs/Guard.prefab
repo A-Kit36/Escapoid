@@ -115,8 +115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256c6097406c78940a5e02123c397a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseSpeed: 7
+  chaseSpeed: 6
   catchDistance: 0.8
+  caughtSound: {fileID: 8300000, guid: ac59da7db8f73f14dba1a1be6fd60b3c, type: 3}
 --- !u!120 &5901424642795839209
 LineRenderer:
   serializedVersion: 2
@@ -243,6 +244,7 @@ MonoBehaviour:
   - pivotPoint: {fileID: 0}
     moveDirection: {x: 1, y: 0}
   patrolSpeed: 3
+  onStandBy: 0
   animDirecton: {x: 0, y: 0}
 --- !u!114 &2621430435152199972
 MonoBehaviour:
