@@ -1448,7 +1448,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3439469495292637811}
         m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
-        m_MethodName: StartMenu
+        m_MethodName: StartMenuButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
