@@ -739,8 +739,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 1795406976043390274, guid: 136e516081978284d9a4d0706ab0daf2, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 136e516081978284d9a4d0706ab0daf2, type: 3}
@@ -9070,7 +9069,7 @@ Transform:
   m_GameObject: {fileID: 1710755832}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.070610695, y: -1.9266, z: -10}
+  m_LocalPosition: {x: 0.07052577, y: -1.9266, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9708,6 +9707,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4121115576030516956, guid: 352fc15446943784584d12f3d1bc173a, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5433875639136214960, guid: 352fc15446943784584d12f3d1bc173a, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3e6ff682718e44146af51a6e523447c0, type: 2}
+    - target: {fileID: 5433875639136214960, guid: 352fc15446943784584d12f3d1bc173a, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -504061258405993977, guid: 3e6ff682718e44146af51a6e523447c0, type: 2}
+    - target: {fileID: 5433875639136214960, guid: 352fc15446943784584d12f3d1bc173a, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8001464042634796360, guid: 352fc15446943784584d12f3d1bc173a, type: 3}
@@ -9788,6 +9799,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8001464042634796360, guid: 352fc15446943784584d12f3d1bc173a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794942303705077918, guid: 352fc15446943784584d12f3d1bc173a, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

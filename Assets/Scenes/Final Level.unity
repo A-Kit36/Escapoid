@@ -867,8 +867,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PRISON 13
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 778421fbb40440a4a9525dbfc5445041, type: 2}
+  m_sharedMaterial: {fileID: -6770815239853010153, guid: 778421fbb40440a4a9525dbfc5445041, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -902,8 +902,8 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
+  m_characterSpacing: 50
+  m_wordSpacing: 20
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
@@ -7630,6 +7630,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 774732652}
+    - target: {fileID: 1234061692099799844, guid: 352fc15446943784584d12f3d1bc173a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4121115576030516956, guid: 352fc15446943784584d12f3d1bc173a, type: 3}
       propertyPath: m_Name
       value: Canvas
