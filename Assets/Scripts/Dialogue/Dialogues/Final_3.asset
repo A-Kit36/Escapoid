@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Final_3
   m_EditorClassIdentifier: 
   dialogue:
-  - "No one is safe within those dark halls. The only thing there for anyone is that
-    always ticking, invisible timer on what life any one person has left\u2013\r\n"
+  - 'No one is safe within those dark halls.
+
+'
+  - The only thing there for anyone is that always ticking,
+  - "invisible timer on what life any one person has left\u2013"
   - Counting down to the day where the prison takes your life.
   storyText: 1

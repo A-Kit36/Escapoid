@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - "Still\u2026some may call those victims the lucky ones."
-  - "What awaits those who are taken to the thirteenth layer, Prison 13, have a whole
-    new level of torture headed their way\u2013torture that even death can\u2019t
-    save them from now. \r\n"
-  - 'There are tall tales spread around the facility. Talks of people who managed
-    to escape, who survived against all the odds, but there is no record of such
-    accounts. '
+  - What awaits those who are taken to the thirteenth layer, Prison 13,
+  - "have a whole new level of torture headed their way\u2013torture that even death
+    can\u2019t save them from now. "
+  - There are tall tales spread around the facility.
+  - Talks of people who managed to escape, who survived against all the odds,
+  - but there is no record of such accounts.
   - 'Even the guards and researchers posted on that cold station of horrors know
-    they are not allowed to ever leave, so that its secrets may be kept.
+    they are not allowed to ever leave,
 
 '
+  - so that its secrets may be kept.
   storyText: 1

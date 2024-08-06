@@ -18,12 +18,14 @@ MonoBehaviour:
 '
   - "He walks along the footprints of Earth\u2019s people when they come knocking
     at any one else\u2019s proverbial door. \r\n"
-  - "Civilizations, planets, and lives are all the same taken swiftly by the invaders
-    just as swiftly as Death arrives to carry along their souls. \r"
-  - "He may be neutral regarding who he takes, humanity has certainly seen their
-    fair share of losses, but Death is but naturally bound to those who survive\u2013"
-  - 'To those who win. For those are the ones who will sow the seeds of pain and
-    suffering that the reaper shall one day reap.
+  - "Civilizations, planets, and lives are all the same taken swiftly by the invaders\r"
+  - 'just as swiftly as Death arrives to carry along their souls. '
+  - He may be neutral regarding who he takes, humanity has certainly seen their fair
+    share of losses,
+  - "but Death is but naturally bound to those who survive\u2013"
+  - 'To those who win.
 
 '
+  - For those are the ones who will sow the seeds of pain and suffering that the
+    reaper shall one day reap.
   storyText: 1
