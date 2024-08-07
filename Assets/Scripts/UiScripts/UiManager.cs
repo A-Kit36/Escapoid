@@ -17,7 +17,9 @@ public class UiManager : MonoBehaviour
     private Dictionary<string, GameObject> inGameMenuDict;
 
     public TextMeshProUGUI storyText;
-    
+    public TextMeshProUGUI dialogueText;
+    public TextMeshProUGUI timer;
+
 
     private void Awake()
     {
@@ -37,7 +39,7 @@ public class UiManager : MonoBehaviour
             {"MainHUD", uiList[1]},
             {"Pause", uiList[2]},
             {"GameOver", uiList[3]},
-            {"InGameMenu", uiList[4]}, 
+            {"InGameMenu", uiList[4]},
         };
         //Create a collection with all the InGameUI
         inGameMenuDict = new Dictionary<string, GameObject>
@@ -46,7 +48,7 @@ public class UiManager : MonoBehaviour
             {"Status2", inGameMenuList[1]},
             {"StoryScreen", inGameMenuList[2]},
             {"Dialogue1", inGameMenuList[3]},
-            {"Dialogue2", inGameMenuList[4]}, 
+            {"Dialogue2", inGameMenuList[4]},
         };
         //Show the Main Menu UI
         StartMenu();
@@ -59,7 +61,7 @@ public class UiManager : MonoBehaviour
             {"MainHUD", uiList[1]},
             {"Pause", uiList[2]},
             {"GameOver", uiList[3]},
-            {"InGameMenu", uiList[4]}, 
+            {"InGameMenu", uiList[4]},
         };
         //Create a collection with all the InGameUI
         inGameMenuDict = new Dictionary<string, GameObject>
@@ -68,15 +70,15 @@ public class UiManager : MonoBehaviour
             {"Status2", inGameMenuList[1]},
             {"StoryScreen", inGameMenuList[2]},
             {"Dialogue1", inGameMenuList[3]},
-            {"Dialogue2", inGameMenuList[4]}, 
+            {"Dialogue2", inGameMenuList[4]},
         };
     }
 
     void Update()
     {
-        
+
     }
-    
+
     //all the methods called by the ingame buttons 
     #region //AllStartMenuButtons
     public void NewGame()
@@ -87,11 +89,11 @@ public class UiManager : MonoBehaviour
     }
     public void Continue()
     {
-        
+
     }
     public void LoadSave()
     {
-        
+
     }
     public void Options()
     {
@@ -105,9 +107,17 @@ public class UiManager : MonoBehaviour
     }
     public void Quit()
     {
-        Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
+
     }
+
+    public void DeactivateAllUI()
+    {
+        foreach (GameObject item in uiList)
+        {
+            item.SetActive(false);
+        }
+    }
+
     #endregion
     #region //AllInGameMenuUI 
     public void DialogueSolo()
@@ -136,6 +146,12 @@ public class UiManager : MonoBehaviour
         ActivateUI(uiDict["InGameMenu"], uiList);
         ActivateUI(inGameMenuDict["Status2"], inGameMenuList);
     }
+
+    public void MainHUD()
+    {
+        ActivateUI(uiDict["MainHUD"], uiList);
+    }
+
     #endregion
     public void StartMenu()
     {
@@ -154,13 +170,15 @@ public class UiManager : MonoBehaviour
     }
     public void RestartScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.Instance.RestartLevel();
+        ActivateUI(uiDict["MainHUD"], uiList);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void GameOver()
     {
         ActivateUI(uiDict["GameOver"], uiList);
     }
-    
+
     //Activate and Deactivate UI for only showing the wanted one at a time
     public void ActivateUI(GameObject uiToAct, List<GameObject> uiToDeac)
     {
@@ -174,6 +192,7 @@ public class UiManager : MonoBehaviour
             item.SetActive(false);
         }
     }
+
     //call GameObject in a dictionary
     public GameObject GetObjectByKey(string key)
     {

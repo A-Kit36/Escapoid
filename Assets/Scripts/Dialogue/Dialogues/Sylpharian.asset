@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ac5bf8246801a4c854a297876323da, type: 3}
+  m_Name: Sylpharian
+  m_EditorClassIdentifier: 
+  dialogue:
+  - (A sylpharian! One of my own kind!)
+  - '<color=green>They managed to get you too? '
+  - <color=green>I'd try to get out, but the guards seem to be on high alert.
+  - <color=green>I can't get close enough to touch one without them seeing me!
+  - <color=green>Maybe you'll have better luck?
+  - <color=green>I hope our planet is ok...
+  storyText: 0

@@ -11,6 +11,10 @@ public class TriggerDialogue : MonoBehaviour
     {
         if (InputManagerOption.Instance.GetInteractInput() && isTalking)
         {
+            if (!DialogueBoxController.Instance.dialogueActive)
+            {
+                return;
+            }
             Interact();
         }
     }

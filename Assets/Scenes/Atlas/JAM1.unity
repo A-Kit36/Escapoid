@@ -489,6 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AwarenessLevel: 0
+  retries: 0
   _maxLives: 0
   _livesLeft: 0
   canvasBlack: {fileID: 0}

@@ -33,4 +33,18 @@ public class SoundManager : MonoBehaviour
     {
         audioSource.Play();
     }
+
+    public IEnumerator LerpFunction(float endValue, float duration)
+    {
+        float time = 0;
+        float startValue = audioSource.volume;
+
+        while (time < duration)
+        {
+            audioSource.volume = Mathf.Lerp(startValue, endValue, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        audioSource.volume = endValue;
+    }
 }

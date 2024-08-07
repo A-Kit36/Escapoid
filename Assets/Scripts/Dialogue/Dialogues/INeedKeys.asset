@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: INeedKeys
   m_EditorClassIdentifier: 
   dialogue:
-  - I am not going back without the keys to my airship
+  - I am not going back without the keys to my airship!
+  storyText: 0

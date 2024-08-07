@@ -9,6 +9,7 @@ public class AIActionMoveTowards : AIAction
     private float distance;
     private Rigidbody2D rb;
     private Animator animator;
+    private bool isMoving = true;
     //private CharacterMovement _charMovement;
 
     public override void Execute()
@@ -16,7 +17,10 @@ public class AIActionMoveTowards : AIAction
         Transform targetTransform = Brain.Target.transform;
 
         //Transform charTransform = Brain.Character.transform;
-
+        if (!isMoving)
+        {
+            return;
+        }
         if (targetTransform.position.x > rb.transform.position.x)
         {
             //_charMovement.MoveCharacter(Cardinal.East);
@@ -49,6 +53,7 @@ public class AIActionMoveTowards : AIAction
         distance = Vector2.Distance(targetTransform.position, rb.transform.position);
         if (distance <= catchDistance)
         {
+            isMoving = false;
             Debug.Log("Game Over!");
             GameManager.Instance.HandleGameOver();
         }
@@ -63,6 +68,7 @@ public class AIActionMoveTowards : AIAction
         } */
         rb = GetComponentInParent<Rigidbody2D>();
         animator = GetComponentInParent<Animator>();
+        isMoving = true;
         animator.SetBool("IsMoving", true);
     }
 

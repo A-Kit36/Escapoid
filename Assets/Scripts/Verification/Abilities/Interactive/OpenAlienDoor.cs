@@ -16,6 +16,7 @@ public class OpenAlienDoor : InteractAbility
     [SerializeField] AudioClip openDoorClip;
     private SpriteRenderer doorRenderer;
     private bool dialogueStarted = false;
+    private bool coroutineStarted = false;
 
     private void Awake()
     {
@@ -35,6 +36,10 @@ public class OpenAlienDoor : InteractAbility
     }
     public override void NewFunction()
     {
+        if (coroutineStarted)
+        {
+            return;
+        }
         StartCoroutine(BigMistake());
     }
 
@@ -47,7 +52,7 @@ public class OpenAlienDoor : InteractAbility
 
     private IEnumerator BigMistake()
     {
-
+        coroutineStarted = true;
         playerMovement.DisableMovenent();
         InputManagerOption.Instance.DisableAllButtons();
         AudioPoolManager.Instance.PlayAudioClip(openDoorClip);

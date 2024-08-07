@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ogAnimatorController: {fileID: 9100000, guid: cd26fb6b5c41a3b4ebfcca7bb2a5e6c0, type: 2}
-  turnSound: {fileID: 8300000, guid: ef34beb476632bc46bb735585b2f9995, type: 3}
+  turnSound: {fileID: 8300000, guid: de0cd7d04052d5944a527d7fc3273a1f, type: 3}
 --- !u!114 &9099466673238966254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,7 +294,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 1
   ImposterTimeSetting: 10
-  timerUI: {fileID: 0}
 --- !u!114 &5842697381210221836
 MonoBehaviour:
   m_ObjectHideFlags: 0
